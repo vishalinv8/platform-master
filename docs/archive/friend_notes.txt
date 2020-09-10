@@ -1,0 +1,304 @@
+
+Get Users with Friend Requests:
+-------------------------------
+
+GET /users/friends/    (index of my friends)
+	$request->user()->getFriends($perPage = 200);
+
+POST /users/friends/requests/{user}
+	$user->befriend($recipient);
+
+DELETE /users/friends/requests/{user}
+	$user->unfriend($friend);
+
+GET /users/friends/requests/pending/
+	$request->$user->getFriendRequests();
+
+POST /users/friends/requests/accept/{user}
+	$user->acceptFriendRequest($sender);
+
+POST /users/friends/requests/deny/{user}
+	$user->denyFriendRequest($sender);
+
+GET /users/friends/requests/denied/
+	$request->$user->getDeniedFriendships();
+
+POST /users/friends/block/{user}
+	$user->blockFriend($friend);
+
+POST /users/friends/unblock/{user}
+    $user->unblockFriend($friend);
+
+GET /users/friends/blocked/
+	$request->$user->getBlockedFriendships();
+
+
+GET /users/friends/    (index)
+	$request->user()->getFriends($perPage = 200);
+
+GET /users/friends_of_friends/
+	$request->$user->getFriendsOfFriends($perPage = 20);
+
+
+GET /users/mutual_friends/{user}
+		$request->$user->getMutualFriends($otherUser, $perPage = 20);
+
+GET /users/friends/of_friends/
+	$request->$user->getFriendsOfFriends($perPage = 20);
+
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+Do all verbs need to get modelled to crud resource?
+	block/
+		or
+	PUT /users/friend/{user}?blocked=true
+
+then apiResource() maps 
+
+
+Get Friends:
+------------
+
+Can you see the friends of other users who are not your friends?
+    -- NO. Only your friends can see your friends.
+        But anyone can post public stuff on your feed and from that data probably deduce friendships.
+
+    GET /users/{user}/friends/    (index)
+
+    GET /users/friends/    (index)
+        See your friends.
+
+    Or can you only see your own friends? No, users can be public., seeing a friend is seeing a user. The friendship doesn't matter if the user profile is public; it's visibile nonetheless.
+
+GET /users/friends/    (index)
+	$request->user()->getFriends($perPage = 200);
+
+GET /users/friends_of_friends/
+	$request->$user->getFriendsOfFriends($perPage = 20);
+
+GET /users/{user}/friends/{user}     SKIPPED redundant with /user/{user}. 
+    (individual friend profile, becomes a read) FIXME just have friends perms on all user reads You can see the friends of your friends, because it's a filtered form of friendsoffriends.
+	if $request->$user->isFriendWith($friend); return user with friend profile / feed, not just public profile? No, is public or not, does not depend on URL. This is the same as /users/{user} -- friends can see it. There is no special data type for friends.
+		Shows user's posts, events, comments?
+
+GET /users/mutual_friends/{user}
+		$request->$user->getMutualFriends($otherUser, $perPage = 20);
+
+
+POST /users/befriend/{user}
+	$user->befriend($recipient);
+
+DELETE /users/unfriend/{user}
+	$user->unfriend($friend);
+
+
+POST /users/befriend/{user}
+	$user->befriend($recipient);
+
+DELETE /users/unfriend/{user}
+	$user->unfriend($friend);
+
+
+
+
+or
+
+POST /users/{user}/befriend/{user}
+	$user->befriend($recipient);
+
+POST /users/friends/requests/{user}
+	$user->befriend($recipient);
+
+PUT /users/friends/requests/{user}
+	$user->befriend($recipient);
+
+DELETE /users/friends/${user}
+	$user->unfriend($friend);
+
+
+
+
+
+friends/of/{user}  SKIPPPED, shouldn't make friendships public
+	//$user->getFriends($perPage = 200, $group_name);
+	$user->getFriends($perPage = 200);
+
+
+
+Get Users with Friend Requests:
+-------------------------------
+
+use common sub-domain:
+
+
+POST /users/friends/requests/{user}
+	$user->befriend($recipient);
+
+DELETE /users/friends/requests/{user}
+	$user->unfriend($friend);
+
+
+friends/block/{user}
+	$user->blockFriend($friend);
+
+friends/unblock/{user}
+	$user->unblockFriend($friend);
+
+
+
+GET /users/friends/requests/pending/
+	$request->$user->getFriendRequests();
+
+GET /users/friends/requests/blocked/
+	$request->$user->getBlockedFriendships();
+
+GET /users/friends/requests/denied/
+	$request->$user->getDeniedFriendships();
+
+POST /users/friends/requests/{user}
+	$user->befriend($recipient);
+
+POST /users/friends/requests/accept/{user}
+	$user->acceptFriendRequest($sender);
+
+/users/friends/requests/deny/{user}
+	$user->denyFriendRequest($sender);
+
+
+    SKIPPED::
+            or use generic search interface:
+
+            GET /users/friends/requests/?pending=true
+	            $request->$user->getFriendRequests();
+
+            GET /users/friends/requests/?blocked=trie
+	            $request->$user->getBlockedFriendships();
+
+            GET /users/friends/requests/?denied=true
+	            $request->$user->getDeniedFriendships();
+
+            GET /users/friends/requests/?key=value
+	            $request->$user->getDeniedFriendships();
+
+            GET /users/friends/requests/model-property/?operator_id=value
+	            $request->$user->getDeniedFriendships();
+
+
+
+Befriend or Unfriend another User
+---------------------------------
+
+/users/friends/befriend/{user}
+	$user->befriend($recipient);
+
+friends/unfriend/{user}
+	$user->unfriend($friend);
+
+
+Block or Unblock a user
+-----------------------
+
+friends/block/{user}
+	$user->blockFriend($friend);
+
+friends/unblock/{user}
+	$user->unblockFriend($friend);
+
+
+------------------------------------
+------------------------------------
+------------------------------------
+users/{user}/friends ??
+friends/request/{user}
+friends/a/{user}
+
+friends/ask/{user}
+
+friends/accept/{user}
+friends/deny/{user}
+friends/unfriend/{user}
+
+friends/block/{user}
+friends/unblock/{user}
+
+
+Friend actions:
+REQUESTS/
+	befriend()  send request
+	acceptFriendRequest()   accept request (become friends)
+	denyFriendRequest()   deny request
+
+
+	$user->getFriendRequests(); FIXME Add to User model.
+
+	unfriend($friend);
+	blockFriend($friend);
+	unblockFriend($friend);
+
+SKIPPED:
+  $user->isFriendWith($friend);
+	$user->hasFriendRequestFrom($sender);       SKIPPED, has, is... relationship is for logic, not data xfer
+	$user->hasSentFriendRequestTo($recipient);  SKIPPED
+	$user->hasBlocked($friend);
+	$user->isBlockedBy($friend);
+
+FRIENDS:
+
+Add to User model, as part of profile data.
+$user->getFriendship($friend);   Get single friendship
+
+
+
+
+
+
+
+What are friendshps? 
+
+	Hootlex\Friendships\Models\Friendship {#962
+		   id: 333,
+		   sender_id: 441,
+		   sender_type: "App\User",
+		   recipient_id: 445,
+		   recipient_type: "App\User",
+		   status: 0,
+		   created_at: "2016-01-16 01:36:08",
+		   updated_at: "2016-01-16 01:36:08",
+		 }
+
+	$user->getAllFriendships();
+	$user->getPendingFriendships();
+	$user->getAcceptedFriendships();
+	$user->getDeniedFriendships();
+	$user->getBlockedFriendships();
+
+
+$user->getFriendsCount();
+$user->getPendingsCount();
+$user->getMutualFriendsCount($otherUser);
+
+
+Friend Groups:
+
+$user->getFriends($perPage = 200);  
+$user->getFriends($perPage = 200, $group_name);
+
+$user->groupFriend($friend, $group_name);
+$user->ungroupFriend($friend, 'family');
+$user->ungroupFriend($friend);
+$user->getFriendsCount($group_name);
+$user->getAllFriendships($group_name);
+$user->getAcceptedFriendships($group_name);
+$user->getPendingFriendships($group_name);
+
+
+How to search to find new friends? Introductions, how to
+	Search by name
+	Search by email address
+	Search by location, venue
+	Search, find their user_id
+		Review LinkedIn model, review PS4 network model

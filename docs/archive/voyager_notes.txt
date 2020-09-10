@@ -1,0 +1,165 @@
+
+# Install Voyager:
+composer require tcg/voyager
+
+
+Broken images:
+http://localhost/storage/posts/post2.jpg
+
+Found in .env:
+APP_URL=http://localhost
+
+Set it to:
+APP_URL=
+
+Images now work
+Remaining setup:
+
+
+
+FIXME: Check sample CRUD generator for transaction support. As per
+https://laravel.com/docs/5.6/database
+
+DB::transaction(function () {
+    DB::table('users')->update(['votes' => 1]);
+
+    DB::table('posts')->delete();
+});
+
+
+
+2. Check the results of BREAD creation  DONE, it's non-Eloquent custom data_rows table.
+	-- Is it an API generator? Or just a /admin/ gui for table creation?  Just admin
+	-- Is it easy to create a generic API generator from this? No
+	-- Does it generate pure Laravel model code, or does it reply on special Voyager bullshit? bullshit
+		-- Does it matter if it relies on bullshit? Yes, it's bullshit, not supporting Eloquent standards
+
+How to get an API from the GUI-created table
+	Create the .php files manually with php artisan make: commands. Add soft delete feature manually (check for option). 
+
+Should I edit Eloquent code manually? Yes
+	Are there any polymorphic relationships? Other stuff in the Laravel docs for this app?
+
+
+
+Also: Check table permissions from code
+	TODO Next: find intercept point
+		Resources? Name it there conditionally?
+		
+		Could use the query builder properties to limit the SELECT fields?
+			-- Would need to replace the fields already in there with just the readable ones
+
+		return $user->makeVisible('attribute')->toArray();
+
+	
+
+
+
+
+
+
+
+# Add the database connection in
+# config/database.php
+# FIXME: Automate this for MySQL connection to localhost
+'mysql' => [
+    'read' => [
+        'host' => ['192.168.1.1'],
+    ],
+    'write' => [
+        'host' => ['196.168.1.2'],
+    ],
+    'sticky'    => true,
+    'driver'    => 'mysql',
+    'database'  => 'database',
+    'username'  => 'root',
+    'password'  => '',
+    'charset'   => 'utf8mb4',
+    'collation' => 'utf8mb4_unicode_ci',
+    'prefix'    => '',
+],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+symfony/var-dumper suggests installing ext-intl (To show region name in time zone dump)
+symfony/routing suggests installing doctrine/annotations (For using the annotation loader)
+symfony/routing suggests installing symfony/config (For using the all-in-one router or any loader)
+symfony/routing suggests installing symfony/dependency-injection (For loading routes from a service)
+symfony/routing suggests installing symfony/expression-language (For using expression matching)
+symfony/routing suggests installing symfony/yaml (For using the YAML loader)
+symfony/event-dispatcher suggests installing symfony/dependency-injection ()
+symfony/http-kernel suggests installing symfony/browser-kit ()
+symfony/http-kernel suggests installing symfony/config ()
+symfony/http-kernel suggests installing symfony/dependency-injection ()
+symfony/console suggests installing symfony/lock ()
+egulias/email-validator suggests installing ext-intl (PHP Internationalization Libraries are required to use the SpoofChecking validation)
+swiftmailer/swiftmailer suggests installing ext-intl (Needed to support internationalized email addresses)
+swiftmailer/swiftmailer suggests installing true/punycode (Needed to support internationalized email addresses, if ext-intl is not installed)
+paragonie/random_compat suggests installing ext-libsodium (Provides a modern crypto API that can be used to generate random bytes.)
+ramsey/uuid suggests installing ext-libsodium (Provides the PECL libsodium extension for use with the SodiumRandomGenerator)
+ramsey/uuid suggests installing ext-uuid (Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator)
+ramsey/uuid suggests installing ircmaxell/random-lib (Provides RandomLib for use with the RandomLibAdapter)
+ramsey/uuid suggests installing moontoast/math (Provides support for converting UUID to 128-bit integer (in string form).)
+ramsey/uuid suggests installing ramsey/uuid-console (A console application for generating UUIDs with ramsey/uuid)
+ramsey/uuid suggests installing ramsey/uuid-doctrine (Allows the use of Ramsey\Uuid\Uuid as Doctrine field type.)
+symfony/translation suggests installing symfony/config ()
+symfony/translation suggests installing symfony/yaml ()
+monolog/monolog suggests installing aws/aws-sdk-php (Allow sending log messages to AWS services like DynamoDB)
+monolog/monolog suggests installing doctrine/couchdb (Allow sending log messages to a CouchDB server)
+monolog/monolog suggests installing ext-amqp (Allow sending log messages to an AMQP server (1.0+ required))
+monolog/monolog suggests installing ext-mongo (Allow sending log messages to a MongoDB server)
+monolog/monolog suggests installing graylog2/gelf-php (Allow sending log messages to a GrayLog2 server)
+monolog/monolog suggests installing mongodb/mongodb (Allow sending log messages to a MongoDB server via PHP Driver)
+monolog/monolog suggests installing php-amqplib/php-amqplib (Allow sending log messages to an AMQP server using php-amqplib)
+monolog/monolog suggests installing php-console/php-console (Allow sending log messages to Google Chrome)
+monolog/monolog suggests installing rollbar/rollbar (Allow sending log messages to Rollbar)
+monolog/monolog suggests installing ruflin/elastica (Allow sending log messages to an Elastic Search server)
+monolog/monolog suggests installing sentry/sentry (Allow sending log messages to a Sentry server)
+league/flysystem suggests installing league/flysystem-aws-s3-v2 (Allows you to use S3 storage with AWS SDK v2)
+league/flysystem suggests installing league/flysystem-aws-s3-v3 (Allows you to use S3 storage with AWS SDK v3)
+league/flysystem suggests installing league/flysystem-azure (Allows you to use Windows Azure Blob storage)
+league/flysystem suggests installing league/flysystem-cached-adapter (Flysystem adapter decorator for metadata caching)
+league/flysystem suggests installing league/flysystem-eventable-filesystem (Allows you to use EventableFilesystem)
+league/flysystem suggests installing league/flysystem-rackspace (Allows you to use Rackspace Cloud Files)
+league/flysystem suggests installing league/flysystem-sftp (Allows you to use SFTP server storage via phpseclib)
+league/flysystem suggests installing league/flysystem-webdav (Allows you to use WebDAV storage)
+league/flysystem suggests installing league/flysystem-ziparchive (Allows you to use ZipArchive adapter)
+league/flysystem suggests installing spatie/flysystem-dropbox (Allows you to use Dropbox storage)
+league/flysystem suggests installing srmklive/flysystem-dropbox-v2 (Allows you to use Dropbox storage for PHP 5 applications)
+laravel/framework suggests installing aws/aws-sdk-php (Required to use the SQS queue driver and SES mail driver (~3.0).)
+laravel/framework suggests installing doctrine/dbal (Required to rename columns and drop SQLite columns (~2.6).)
+laravel/framework suggests installing guzzlehttp/guzzle (Required to use the Mailgun and Mandrill mail drivers and the ping methods on schedules (~6.0).)
+laravel/framework suggests installing league/flysystem-aws-s3-v3 (Required to use the Flysystem S3 driver (~1.0).)
+laravel/framework suggests installing league/flysystem-cached-adapter (Required to use the Flysystem cache (~1.0).)
+laravel/framework suggests installing league/flysystem-rackspace (Required to use the Flysystem Rackspace driver (~1.0).)
+laravel/framework suggests installing league/flysystem-sftp (Required to use the Flysystem SFTP driver (~1.0).)
+laravel/framework suggests installing nexmo/client (Required to use the Nexmo transport (~1.0).)
+laravel/framework suggests installing pda/pheanstalk (Required to use the beanstalk queue driver (~3.0).)
+laravel/framework suggests installing predis/predis (Required to use the redis cache and queue drivers (~1.0).)
+laravel/framework suggests installing pusher/pusher-php-server (Required to use the Pusher broadcast driver (~3.0).)
+laravel/framework suggests installing symfony/dom-crawler (Required to use most of the crawler integration testing tools (~4.0).)
+laravel/framework suggests installing symfony/psr-http-message-bridge (Required to psr7 bridging features (~1.0).)
+psy/psysh suggests installing ext-pdo-sqlite (The doc command requires SQLite to work.)
+psy/psysh suggests installing hoa/console (A pure PHP readline implementation. You'll want this if your PHP install doesn't already support readline or libedit.)
+filp/whoops suggests installing whoops/soap (Formats errors as SOAP responses)
+sebastian/global-state suggests installing ext-uopz (*)
+phpunit/php-code-coverage suggests installing ext-xdebug (^2.6.0)
+phpunit/phpunit suggests installing ext-soap (*)
+phpunit/phpunit suggests installing ext-xdebug (*)
+phpunit/phpunit suggests installing phpunit/php-invoker (^2.0)
+

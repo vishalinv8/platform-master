@@ -1,0 +1,1873 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   */
+  
+  html {
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    color: #444;
+    font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 1em;
+    margin: auto;
+    max-width: 42em;
+    background: #fefefe;
+  }
+  
+  a {
+    color: #0645ad;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #0b0080;
+  }
+  
+  a:hover {
+    color: #06e;
+  }
+  
+  a:active {
+    color: #faa700;
+  }
+  
+  a:focus {
+    outline: thin dotted;
+  }
+  
+  *::-moz-selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #000;
+  }
+  
+  *::selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #000;
+  }
+  
+  a::-moz-selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #0645ad;
+  }
+  
+  a::selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #0645ad;
+  }
+  
+  p {
+    margin: 1em 0;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #111;
+    line-height: 125%;
+    margin-top: 2em;
+    font-weight: normal;
+  }
+  
+  h4, h5, h6 {
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  h4 {
+    font-size: 1.2em;
+  }
+  
+  h5 {
+    font-size: 1em;
+  }
+  
+  h6 {
+    font-size: 0.9em;
+  }
+  
+  blockquote {
+    color: #666666;
+    margin: 0;
+    padding-left: 3em;
+    border-left: 0.5em #EEE solid;
+  }
+  
+  hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+  }
+  
+  pre, code, kbd, samp {
+    color: #000;
+    font-family: monospace, monospace;
+    _font-family: 'courier new', monospace;
+    font-size: 0.98em;
+  }
+  
+  pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  b, strong {
+    font-weight: bold;
+  }
+  
+  dfn {
+    font-style: italic;
+  }
+  
+  ins {
+    background: #ff9;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  mark {
+    background: #ff0;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+  }
+  
+  li p:last-child {
+    margin-bottom: 0;
+  }
+  
+  ul ul, ol ol {
+    margin: .3em 0;
+  }
+  
+  dl {
+    margin-bottom: 1em;
+  }
+  
+  dt {
+    font-weight: bold;
+    margin-bottom: .8em;
+  }
+  
+  dd {
+    margin: 0 0 .8em 2em;
+  }
+  
+  dd:last-child {
+    margin-bottom: 0;
+  }
+  
+  img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+  }
+  
+  figure {
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+  }
+  
+  figure img {
+    border: none;
+    margin: 0 auto;
+  }
+  
+  figcaption {
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 0 0 .8em;
+  }
+  
+  table {
+    margin-bottom: 2em;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  
+  table th {
+    padding: .2em 1em;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+  
+  table td {
+    padding: .2em 1em;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    vertical-align: top;
+  }
+  
+  .author {
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  @media only screen and (min-width: 480px) {
+    body {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+  @media print {
+    * {
+      background: transparent !important;
+      color: black !important;
+      filter: none !important;
+      -ms-filter: none !important;
+    }
+  
+    body {
+      font-size: 12pt;
+      max-width: 100%;
+    }
+  
+    a, a:visited {
+      text-decoration: underline;
+    }
+  
+    hr {
+      height: 1px;
+      border: 0;
+      border-bottom: 1px solid black;
+    }
+  
+    a[href]:after {
+      content: " (" attr(href) ")";
+    }
+  
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+  
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+      content: "";
+    }
+  
+    pre, blockquote {
+      border: 1px solid #999;
+      padding-right: 1em;
+      page-break-inside: avoid;
+    }
+  
+    tr, img {
+      page-break-inside: avoid;
+    }
+  
+    img {
+      max-width: 100% !important;
+    }
+  
+    @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+  }
+  
+    @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+  }
+  
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3;
+    }
+  
+    h2, h3 {
+      page-break-after: avoid;
+    }
+  }
+  
+  body,table tr{background-color:#fff}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}pre code,table,table tr{padding:0}hr,pre code{background:0 0}body{font:16px Helvetica,Arial,sans-serif;line-height:1.4;color:#333;word-wrap:break-word;padding:10px 15px}strong,table tr th{font-weight:700}h1{font-size:2em;margin:.67em 0;text-align:center}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h1,h2,h3,h4,h5,h6{font-weight:700;position:relative;margin-top:15px;margin-bottom:15px;line-height:1.1}h1,h2{border-bottom:1px solid #eee}hr{height:0;margin:15px 0;overflow:hidden;border:0;border-bottom:1px solid #ddd}a{color:#4183C4}a.absent{color:#c00}ol,ul{padding-left:15px;margin-left:5px}ol{list-style-type:lower-roman}table tr{border-top:1px solid #ccc;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}img{max-width:100%}blockquote{padding:0 15px;border-left:4px solid #ccc}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;white-space:pre;border:none}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  
+  </style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#rest-introduction">REST Introduction</a><ul>
+<li><a href="#iphone-swift">iPhone Swift</a></li>
+<li><a href="#android-java">Android Java</a></li>
+<li><a href="#html-vue-with-vuex">HTML Vue with Vuex</a></li>
+</ul></li>
+<li><a href="#rest-http-verbs">REST HTTP Verbs</a></li>
+<li><a href="#rest-http-url">REST HTTP URL</a></li>
+<li><a href="#rest-optional-arguments">REST Optional Arguments</a></li>
+<li><a href="#rest-headers">REST Headers</a></li>
+<li><a href="#rest-upload-keyvalue-pairs">REST Upload Key/Value Pairs</a></li>
+<li><a href="#using-postman">Using Postman</a><ul>
+<li><a href="#auth-with-postman">Auth with Postman</a></li>
+<li><a href="#https-error-handling-with-postman">HTTPS error handling with Postman</a></li>
+</ul></li>
+<li><a href="#models">Models</a><ul>
+<li><a href="#overview-1">Overview</a></li>
+<li><a href="#users">Users</a></li>
+<li><a href="#user-logins">User Logins</a></li>
+<li><a href="#google-login">Google Login</a></li>
+<li><a href="#facebook-login">Facebook Login</a></li>
+<li><a href="#guest-login">Guest Login</a></li>
+<li><a href="#user-registration">User Registration</a></li>
+<li><a href="#user-friendship">User Friendship</a></li>
+<li><a href="#user-profiles">User Profiles</a></li>
+<li><a href="#latitude-and-longitude">Latitude and Longitude</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#organizations">Organizations</a><ul>
+<li><a href="#organization-permissions">Organization Permissions</a></li>
+<li><a href="#organization-enrollment">Organization Enrollment</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#searching">Searching</a><ul>
+<li><a href="#word-searches">Word searches</a></li>
+<li><a href="#operator-searches">Operator searches</a></li>
+<li><a href="#searching-dates-and-times">Searching dates and times</a></li>
+<li><a href="#short-field-names-auto-complete">Short field names (auto-complete)</a></li>
+</ul></li>
+<li><a href="#built-in-search-filters-today_only-future_only-max_miles">Built-in search filters: today_only, future_only, max_miles</a><ul>
+<li><a href="#get-apievents-has-today_only1-and-future_only1">GET /api/events has today_only=1 and future_only=1</a></li>
+<li><a href="#max_miles-with-optional-near_lat-near_lon">max_miles (with optional near_lat, near_lon)</a></li>
+</ul></li>
+<li><a href="#paged-chunked-results">Paged / Chunked results</a></li>
+<li><a href="#the-apicontext-endpoint">The /api/context Endpoint</a></li>
+<li><a href="#plai-api-reference">Plai API Reference</a></li>
+<li><a href="#application-context">Application Context</a><ul>
+<li><a href="#get-context-lists-of-types-roles-policies-permission-levels-etc.">Get Context (Lists of Types, Roles, Policies, Permission Levels, etc.)</a><ul>
+<li><a href="#description">Description</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#authentication">Authentication</a><ul>
+<li><a href="#register-as-new-local-user">Register as New Local User</a><ul>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#description-1">Description</a></li>
+</ul></li>
+<li><a href="#login-as-a-local-user">Login as a Local User</a><ul>
+<li><a href="#parameters-1">Parameters</a></li>
+<li><a href="#description-2">Description</a></li>
+</ul></li>
+<li><a href="#logout-invalidate-the-current-auth-token">Logout (invalidate the current Auth token)</a></li>
+<li><a href="#refresh-auth-token">Refresh Auth Token</a><ul>
+<li><a href="#description-3">Description</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#events-1">Events</a><ul>
+<li><a href="#list-or-search-events">List or Search Events</a><ul>
+<li><a href="#parameters-2">Parameters</a></li>
+<li><a href="#supported-fields-for-operator-searches">Supported Fields for Operator Searches</a></li>
+<li><a href="#description-4">Description</a></li>
+</ul></li>
+<li><a href="#create-event">Create Event</a><ul>
+<li><a href="#parameters-3">Parameters</a></li>
+<li><a href="#description-5">Description</a></li>
+</ul></li>
+<li><a href="#event-detail">Event Detail</a><ul>
+<li><a href="#description-6">Description</a></li>
+</ul></li>
+<li><a href="#update-event">Update Event</a><ul>
+<li><a href="#parameters-4">Parameters</a></li>
+</ul></li>
+<li><a href="#delete-event">Delete Event</a></li>
+<li><a href="#event-user-going">Event: User Going</a><ul>
+<li><a href="#description-7">Description</a></li>
+</ul></li>
+<li><a href="#event-user-not-going">Event: User Not Going</a><ul>
+<li><a href="#description-8">Description</a></li>
+</ul></li>
+<li><a href="#event-user-alerting">Event: User Alerting</a><ul>
+<li><a href="#description-9">Description</a></li>
+</ul></li>
+<li><a href="#event-user-not-alerting">Event: User Not Alerting</a><ul>
+<li><a href="#description-10">Description</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#users-1">Users</a><ul>
+<li><a href="#list-or-search-users">List or Search Users</a><ul>
+<li><a href="#parameters-5">Parameters</a></li>
+<li><a href="#supported-fields-for-operator-searches-1">Supported Fields for Operator Searches</a></li>
+<li><a href="#description-11">Description</a></li>
+</ul></li>
+<li><a href="#user-detail">User Detail</a><ul>
+<li><a href="#description-12">Description</a></li>
+</ul></li>
+<li><a href="#user-get-me">User: Get Me</a><ul>
+<li><a href="#description-13">Description</a></li>
+</ul></li>
+<li><a href="#user-get-me-1">User: Get Me</a><ul>
+<li><a href="#description-14">Description</a></li>
+</ul></li>
+<li><a href="#update-user">Update User</a><ul>
+<li><a href="#parameters-6">Parameters</a></li>
+<li><a href="#description-15">Description</a></li>
+</ul></li>
+<li><a href="#users-friends-send-a-friend-request-invite">Users: Friends: Send a friend request (invite)</a><ul>
+<li><a href="#description-16">Description</a></li>
+</ul></li>
+<li><a href="#users-friends-list-pending-friend-requests">Users: Friends: List pending friend requests</a><ul>
+<li><a href="#description-17">Description</a></li>
+</ul></li>
+<li><a href="#users-friends-accept-a-friend-request">Users: Friends: Accept a friend request</a></li>
+<li><a href="#users-friends-deny-a-friend-request">Users: Friends: Deny a friend request</a></li>
+<li><a href="#users-friends-list-denied-friend-requests">Users: Friends: List denied friend requests</a></li>
+<li><a href="#users-friends-block-a-user">Users: Friends: Block a user</a></li>
+<li><a href="#users-friends-list-blocked-friend-requests">Users: Friends: List blocked friend requests</a></li>
+<li><a href="#users-friends-unblock-a-user">Users: Friends: Unblock a user</a></li>
+<li><a href="#users-friends-list-friends">Users: Friends: List friends</a></li>
+<li><a href="#users-friends-list-friends-of-friends">Users: Friends: List friends of friends</a></li>
+<li><a href="#users-friends-list-mutual-friends-with-another-user">Users: Friends: List mutual friends with another user</a></li>
+<li><a href="#list-or-search-organizations">List or Search Organizations</a><ul>
+<li><a href="#parameters-7">Parameters</a></li>
+<li><a href="#supported-fields-for-operator-searches-2">Supported Fields for Operator Searches</a></li>
+<li><a href="#description-18">Description</a></li>
+</ul></li>
+<li><a href="#create-organization">Create Organization</a><ul>
+<li><a href="#parameters-8">Parameters</a></li>
+<li><a href="#description-19">Description</a></li>
+</ul></li>
+<li><a href="#organization-detail">Organization Detail</a><ul>
+<li><a href="#description-20">Description</a></li>
+</ul></li>
+<li><a href="#update-organization">Update Organization</a><ul>
+<li><a href="#parameters-9">Parameters</a></li>
+<li><a href="#description-21">Description</a></li>
+</ul></li>
+<li><a href="#delete-organization">Delete Organization</a><ul>
+<li><a href="#description-22">Description</a></li>
+</ul></li>
+<li><a href="#organization-join">Organization: Join</a><ul>
+<li><a href="#description-23">Description</a></li>
+</ul></li>
+<li><a href="#organization-leave">Organization: Leave</a><ul>
+<li><a href="#description-24">Description</a></li>
+</ul></li>
+<li><a href="#organization-members-posters-and-administrators">Organization: Members, Posters, and Administrators</a><ul>
+<li><a href="#description-25">Description</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="overview"><a href="#overview">Overview</a></h1>
+<p>The Plai Platform API is the protocol used by client apps to read or save data on the server. This document is a developer's reference for the network endpoints. It is intended for client app developers (iPhone, Android, and web interfaces).</p>
+<h1 id="rest-introduction"><a href="#rest-introduction">REST Introduction</a></h1>
+<p>The Plai Platform API is a REST JSON API. This means it uses the REST protocol (which is simply the HTTP protocol), and that the data is formatted as JSON arrays. It is used by the client applications to get, save, or update database records. It is also used to upload files.</p>
+<p>REST is a request-response protocol that is built on top of HTTP. It makes use of HTTP's verbs, urls, and upload formats. The responses from the server are all JSON-formatted arrays of key/value pairs, or else ordered lists (arrays) of values without any key. The arrays can be nested, creating trees of arrays.</p>
+<h2 id="iphone-swift"><a href="#iphone-swift">iPhone Swift</a></h2>
+<p>iPhone Swift can handle the HTTP (verbs, urls, and upload formats) natively. Here are some examples, but you would still need to parse the JSON responses somehow:</p>
+<ul>
+<li>https://stackoverflow.com/questions/24321165/make-rest-api-call-in-swift</li>
+</ul>
+<p>iPhone Swift REST code can be made simpler by using the first two libraries mentioned in the following article. The first library handles the HTTP more simply than native code, and the second one handles reading the JSON-formatted responses and accessing the variables.</p>
+<ul>
+<li>https://infinum.co/the-capsized-eight/top-10-ios-swift-libraries-every-ios-developer-should-know-about</li>
+</ul>
+<p>There are other libraries available for Swift also:</p>
+<ul>
+<li>https://github.com/bustoutsolutions/siesta</li>
+</ul>
+<h2 id="android-java"><a href="#android-java">Android Java</a></h2>
+<p>Android supports both HTTP and JSON natively. Here is a tutorial:</p>
+<ul>
+<li>https://code.tutsplus.com/tutorials/android-from-scratch-using-rest-apis--cms-27117</li>
+</ul>
+<p>However Android can be made a little simpler by the use the android-async-http library:</p>
+<ul>
+<li>https://stackoverflow.com/questions/29339565/calling-rest-api-from-an-android-app</li>
+</ul>
+<p>Another library is called Retrofit. It maps the network endpoints to a Java &quot;Interface&quot;. This may or may not be helpful.</p>
+<ul>
+<li>https://android.jlelse.eu/consuming-rest-api-using-retrofit-library-in-android-ed47aef01ecb</li>
+<li>https://inducesmile.com/android/android-retrofit-2-with-json-api-example/</li>
+</ul>
+<h2 id="html-vue-with-vuex"><a href="#html-vue-with-vuex">HTML Vue with Vuex</a></h2>
+<p>Vue with Vuex can use the christianmalek/vuex-rest-api library (or just raw Axios):</p>
+<ul>
+<li>https://github.com/christianmalek/vuex-rest-api</li>
+</ul>
+<h1 id="rest-http-verbs"><a href="#rest-http-verbs">REST HTTP Verbs</a></h1>
+<p>In REST, you must first specify which &quot;verb&quot; you wish to use. These verbs are part of the HTTP specification, and with REST they are supposed to be meaningful. The REST verbs are GET, POST, PUT, PATCH, and DELETE.</p>
+<ul>
+<li><strong>GET</strong>: Use to read data (either a searchable list, or a single database entry)</li>
+<li><strong>POST</strong>: Use to create new data (incl. file uploads)</li>
+<li><strong>PUT</strong>: Used to update or edit existing data</li>
+<li><strong>PATCH</strong>: (this is the same as PUT, just use PUT)</li>
+<li><strong>DELETE</strong>: Delete a database entry</li>
+</ul>
+<p>With the network endpoints listed below, be sure to use the correct verb as specified. Using the wrong verb will generally result in an error, or, if you accidentally specify DELETE instead of PUT, it could delete the data you were trying to update. Your HTTP/JSON library will provide an interface to specify which verb to use for each request.</p>
+<h1 id="rest-http-url"><a href="#rest-http-url">REST HTTP URL</a></h1>
+<p>The URL is how you can specify the network endpoint you with to use. For example:</p>
+<pre><code>https://40.78.81.126/api/events</code></pre>
+<p>Sometimes the network endpoint will have parameters. For example, a POST to this endpoint allows a user to join an organization (assuming it has open enrollment):</p>
+<pre><code>https://server/api/organizations/{organization}/join/{user}</code></pre>
+<p>The &quot;organization&quot; and &quot;user&quot; parameters (shown above with curly braces) must be supplied by the client app. In all cases, the parameter will be a positive integer, which is the unique id. For an admin of organization with id=7 to add a user with id=101, the URL would be:</p>
+<pre><code>https://40.78.81.126/api/organizations/7/join/101</code></pre>
+<p>The server part will be specific to which server you are talking to. It may be a development machine, like this:</p>
+<pre><code>https://40.78.81.126</code></pre>
+<p>or it may be the official Plai Platform Server:</p>
+<pre><code>https://plai.today</code></pre>
+<p>In the documentation below, the server portion is left out of the documentation. Only the path portion of the URL is shown, like this:</p>
+<pre><code>/api/organizations/{organization}/join/{user}</code></pre>
+<p>But any client code will need to specify the full server IP address or server name to the HTTP/JSON library.</p>
+<h1 id="rest-optional-arguments"><a href="#rest-optional-arguments">REST Optional Arguments</a></h1>
+<p>Regardless of which HTTP verb is used (GET, POST, DELETE, etc.), various data or arguments can be uploaded as part of the request. Sometimes this is used to upload new data, like new Event details, but sometimes it is used to specify optional search filters, for example:</p>
+<pre><code>GET https://40.78.81.126/api/events?q=tennis</code></pre>
+<p>Here, the search string 'q' is passed formatted as an HTTP &quot;query string&quot; variable. If this request was using POST, it would be in the HTTP post-data format instead. Your HTTP/JSON library will provide an interface to specify your arguments as key-value pairs, and it should handle the formatting for you automatically. The server can handle multiple input formats, including the GET query string, POST &quot;form-data&quot;, and PUT &quot;x-www-form-urlencoded&quot;. (Since the PUT verb only supports &quot;x-www-form-urlencoded&quot;, it is recommended to use &quot;x-www-form-urlencoded&quot; by default.)</p>
+<h1 id="rest-headers"><a href="#rest-headers">REST Headers</a></h1>
+<p>Part of the HTTP (and REST) protocol is the list of headers. There are always two headers required for the network endpoints:</p>
+<pre><code>Accept: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTAuMC4zLjIzMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTUzNjczNTMyMiwiZXhwIjoxNTM2NzM4OTIyLCJuYmYiOjE1MzY3MzUzMjIsImp0aSI6IkVVSGM1ZmwxMEVpUWJENnIiLCJzdWIiOjEwMSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.196UV8Pm7R4hb3HADPSOPJ2w8T-3jn09-F6K7htIRk4</code></pre>
+<p>The Authorization header will have a different &quot;Bearer token&quot; for each login; the above random string is just an example. But the other two headers should appear exactly as shown: &quot;Accept: application/json&quot;.</p>
+<p>There is also a third header required if using PUT requests:</p>
+<pre><code>Content-Type: application/x-www-form-urlencoded</code></pre>
+<p>This third header is necessary because PHP does not support the default POST format of &quot;form-data&quot; for the verb PUT. The header above tells the server that the new data you trying to PUT on the server is formatted in &quot;x-www-form-urlencoded&quot; instead of &quot;form-data&quot;.</p>
+<p>For more inforation, see: https://laravel.io/forum/02-13-2014-i-can-not-get-inputs-from-a-putpatch-request .</p>
+<p>Alternatively, if it is easier to use &quot;form-data&quot;, you can use a work-around where you skip the third header, and use the verb POST instead of PUT, but also set a magic variable named &quot;_method&quot; with the value of &quot;PUT&quot;. For more info, see:</p>
+<blockquote>
+<p>https://laravel.com/docs/5.7/routing#form-method-spoofing</p>
+</blockquote>
+<p>NOTE: This &quot;method spoofing&quot; trick may be necessary if uploading a file in a PUT request.</p>
+<p>Use whatever is easiest. The Postman developer utility has a checkbox for &quot;x-www-form-urlencoded&quot;, and it automatically adds the corresponding header.</p>
+<p>Your HTTP/JSON library will provide an interface to specify the headers. Most libraries have a way to specify the Authorization header to be automatically included for every outgoing request, since that is such a common need. The &quot;Accept: application/json&quot; may already be a default header, but check your library documentation to be sure.</p>
+<h1 id="rest-upload-keyvalue-pairs"><a href="#rest-upload-keyvalue-pairs">REST Upload Key/Value Pairs</a></h1>
+<p>The REST protocol allows the user to upload key/value pairs of data. In the models shown below, the POST or PUT methods will create or update any named field that is not a computed field (such as &quot;distance&quot; or any included summary counts).</p>
+<p>Some URLs accept a file upload. Where specified, those will also contain a &quot;key&quot; name.</p>
+<h1 id="using-postman"><a href="#using-postman">Using Postman</a></h1>
+<p>There is a free developer tool called <strong>Postman</strong>. It can be used to hand-craft REST/HTTP requests, and then examine the responses from the server.</p>
+<p>Postman is a handy tool to bypass any code you have written, to make sure your HTTP request works correctly on the server. It also allows you to examine the responses to see what the data looks like. Postman runs on Linux, Mac, and Windows.</p>
+<blockquote>
+<p>https://www.getpostman.com/</p>
+</blockquote>
+<p>Postman allows you to specify the HTTP verb, the URL, and any key/value data pairs, as well as headers. If you click on the &quot;bulk edit&quot; button, you can copy and paste values into a text edit field, in the format of one &quot;key: value&quot; per line.</p>
+<p>Before writing client application code, use Postman to experiment with the network endpoints and their arguments.</p>
+<h2 id="auth-with-postman"><a href="#auth-with-postman">Auth with Postman</a></h2>
+<p>When using Postman to test or debug, you must manually paste in the headers:</p>
+<pre><code>Accept:application/json
+Content-Type:application/x-www-form-urlencoded
+Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTAuMC4zLjIzMlwvYXBpXC9hdXRoXC9yZWdpc3RlciIsImlhdCI6MTUzNjgwMzExNSwiZXhwIjoxNTM2ODA2NzE1LCJuYmYiOjE1MzY4MDMxMTUsImp0aSI6IjlMUzl5V2FBTEZESjVtS0YiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XTDE4HILV8lzaI4HnRWjQRk6DuKJWD4r4Y6xSwGaBFY</code></pre>
+<p>The first two lines are always the same. But the third line contains an auth &quot;bearer&quot; token. It is the security key you get after logging in.</p>
+<p>This must be a valid token, or else you'll just get an error. To get a token on a development server, first create a new user:</p>
+<pre><code>POST https://40.78.81.126/api/auth/register?email=yourname@gmail.com&amp;password=SuperSecret&amp;name=YourFirst%20YourLast</code></pre>
+<p>This will create the user with email <code>yourname@gmail.com</code>. Use a unique value for the email for your test users, because you cannot use an email address more than once (without wiping the users table clean).</p>
+<p>The server will return a Javascript Web Token (JWT) in a JSON response like this:</p>
+<pre><code>{
+    &quot;access_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTAuMC4zLjIzMlwvYXBpXC9hdXRoXC9yZWdpc3RlciIsImlhdCI6MTUzNjkwMDI4NSwiZXhwIjoxNTM2OTAzODg1LCJuYmYiOjE1MzY5MDAyODUsImp0aSI6IlR3RWIxU2hLdlNlU0hoSmIiLCJzdWIiOjUyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.0bio-FuHX14V9ejK_YRBQLV0fF__iyZgNccy7GT60r4&quot;,
+    &quot;token_type&quot;: &quot;bearer&quot;,
+    &quot;expires_in&quot;: 3600
+}</code></pre>
+<p>The random characters with key &quot;access_token&quot; must then be copied and pasted into your HTTP headers, like this:</p>
+<pre><code>Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTAuMC4zLjIzMlwvYXBpXC9hdXRoXC9yZWdpc3RlciIsImlhdCI6MTUzNjkwMDI4NSwiZXhwIjoxNTM2OTAzODg1LCJuYmYiOjE1MzY5MDAyODUsImp0aSI6IlR3RWIxU2hLdlNlU0hoSmIiLCJzdWIiOjUyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.0bio-FuHX14V9ejK_YRBQLV0fF__iyZgNccy7GT60r4</code></pre>
+<p>Every time you log out, or your token expires, you will need to repeat the copy-paste operation from the valid JWT &quot;access_token&quot;, to the HTTP <code>Authorization</code> header.</p>
+<p>This manual copy-paste in Postman is an analogy for what the client applications must do. They must periodically update their token, and add to the <code>Authorization</code>.</p>
+<p>Since the server uses the JWT token format, which is a well-known standard, the REST / JSON library on your platform may have useful functions for handling the auth token automatically. If not, you'll need to manually copy the token from the JWT response to the headers of your API requests. <strong>The header name is <code>Authorization</code>, and the value is <code>Bearer</code> (including the trailing single space) followed by the random string of token characters.</strong></p>
+<p>Note that the app will need to handle expired tokens gracefully, and (by default) attempt another login if you get the error status 401 &quot;Unauthenticated.&quot; message, like this:</p>
+<pre><code>Status: 401 Unauthorized
+
+{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code></pre>
+<h2 id="https-error-handling-with-postman"><a href="#https-error-handling-with-postman">HTTPS error handling with Postman</a></h2>
+<p>If the server does not have a signed SSL certificate installed, then HTTPS negotiation will fail, and Postman will simply give an error. This is likely to happen in early development. To work around this error, configure Postman by going to <strong>Settings &gt; SSL certificate verification: OFF</strong>.</p>
+<p>Your client REST/JSON library will need a similar option to ignore SSL errors for early development. Once a signed SSL certificate is installed, and the server changes from https://40.78.81.126/ to https://plai.today/ (with a signed SSL certificate), then the SSL error checking should be re-enabled in any client apps, for stronger security.</p>
+<h1 id="models"><a href="#models">Models</a></h1>
+<h2 id="overview-1"><a href="#overview-1">Overview</a></h2>
+<p>The server manages multiple tables, and relationships of tables. The network endpoints provide access to this data, using the REST protocol. The data is returned as arrays of key/value pairs, which can be considered the data models of the Plai application.</p>
+<p>The primary models are <strong>Events</strong>, <strong>Users</strong>, and <strong>Organizations</strong>. These can be related to one another in various ways; for example, a user can be the creator/owner of an event, or an attendee of an event, or a member of an organization. An organization can post events that are visible only to only their members, or to all users.</p>
+<h2 id="users"><a href="#users">Users</a></h2>
+<p>A User refers to an authenticated user that can log in to the app. A user can create events, organizations, and so on.</p>
+<pre><code>&quot;data&quot;: {
+    &quot;id&quot;: 49,
+    &quot;name&quot;: &quot;Beaulah O&#39;Keefe II&quot;,
+    &quot;nickname&quot;: &quot;ashly00&quot;,
+    &quot;avatar_url&quot;: &quot;public/avatars/3b58deb4-8457-4ef6-8eeb-f2acef5ff08f.png&quot;,
+    &quot;created_at&quot;: &quot;2018-09-13 01:45:04&quot;,
+    &quot;post_status_id&quot;: 3,
+    &quot;post_status_name&quot;: &quot;public&quot;,
+    &quot;post_status_display_name&quot;: &quot;Everyone (General Public)&quot;,
+    &quot;organization_admin_count&quot;: 0,
+    &quot;organization_poster_count&quot;: 0,
+    &quot;organization_member_count&quot;: 0,
+    &quot;event_count&quot;: 0,
+    &quot;user_profile&quot;: {
+        &quot;id&quot;: 49,
+        &quot;user_id&quot;: 49,
+        &quot;description&quot;: &quot;Hatter: and in despair she put her hand on the back. However, it was YOUR table,&#39; said Alice; &#39;I can&#39;t remember things as I tell you!&#39; said Alice. &#39;Why, SHE,&#39; said the Mouse, who was talking. Alice.&quot;,
+        &quot;image_url&quot;: &quot;http://www.ward.info/voluptas-velit-neque-consequatur-delectus-sed-voluptatem.html&quot;,
+        &quot;video_url&quot;: null,
+        &quot;uses_calendar&quot;: 1,
+        &quot;twitter&quot;: &quot;http://www.lowe.net/&quot;,
+        &quot;instagram&quot;: &quot;http://www.maggio.org/ad-ex-quis-sed-odit-ut-maxime&quot;,
+        &quot;facebook&quot;: &quot;http://www.reinger.org/eius-praesentium-aperiam-velit-velit-exercitationem-repudiandae&quot;,
+        &quot;gender_id&quot;: 3,
+        &quot;skill_level_id&quot;: 3,
+        &quot;age_group_id&quot;: 1,
+        &quot;location_id&quot;: 49,
+        &quot;created_at&quot;: &quot;2018-09-13 01:45:05&quot;,
+        &quot;cross_street&quot;: &quot;Jordane Expressway &amp; Osinski Orchard&quot;,
+        &quot;address&quot;: &quot;77920 Witting Knoll&quot;,
+        &quot;address2&quot;: &quot;6&quot;,
+        &quot;city&quot;: &quot;Edwardborough&quot;,
+        &quot;state&quot;: &quot;0&quot;,
+        &quot;country&quot;: &quot;Guinea&quot;,
+        &quot;postal_code&quot;: &quot;31275&quot;,
+        &quot;cc&quot;: &quot;FJ&quot;,
+        &quot;latitude&quot;: &quot;-65.335228&quot;,
+        &quot;longitude&quot;: &quot;137.523728&quot;,
+        &quot;gender_name&quot;: &quot;coed&quot;,
+        &quot;gender_display_name&quot;: &quot;Co-Ed&quot;,
+        &quot;skill_level_name&quot;: &quot;advanced&quot;,
+        &quot;skill_level_display_name&quot;: &quot;Advanced&quot;,
+        &quot;age_group_name&quot;: &quot;any&quot;,
+        &quot;age_group_display_name&quot;: &quot;Any&quot;,
+        &quot;distance_miles&quot;: 7461.194761304259
+    },
+    &quot;organizations_where_admin&quot;: [],
+    &quot;organizations_where_poster&quot;: [],
+    &quot;organizations_where_member&quot;: []
+}</code></pre>
+<p>The networks endpoints restrict what a given user may do. A user can't delete another user's event, for example.</p>
+<h2 id="user-logins"><a href="#user-logins">User Logins</a></h2>
+<p>There are a series of network endpoints dedicated to users registering, logging in, or logging out. These all start with the /api/auth/ prefix, such as /api/auth/register and /api/auth/login.</p>
+<p>Once a user registers or logs in, they will be presented with an access token. This token is in the Javascript Web Token (JWT) format, which is a public standard. This is an an example:</p>
+<pre><code>{
+    &quot;access_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTAuMC4zLjIzMlwvYXBpXC9hdXRoXC9yZWdpc3RlciIsImlhdCI6MTUzNjgwMzExNSwiZXhwIjoxNTM2ODA2NzE1LCJuYmYiOjE1MzY4MDMxMTUsImp0aSI6IjlMUzl5V2FBTEZESjVtS0YiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XTDE4HILV8lzaI4HnRWjQRk6DuKJWD4r4Y6xSwGaBFY&quot;,
+    &quot;token_type&quot;: &quot;bearer&quot;,
+    &quot;expires_in&quot;: 3600
+}</code></pre>
+<p>This token must be put into the &quot;Authorization&quot; header for all subsequent requests -- this is what allows access to the API. It should have the prefix &quot;Bearer &quot; and then the random string, without any quotes. The token expires every hour and a new token can be obtained at any time using the /api/auth/refresh endpoint.</p>
+<p>If you do not have a valid bearer token, you will get a simple JSON response that says this:</p>
+<pre><code>{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code></pre>
+<h2 id="google-login"><a href="#google-login">Google Login</a></h2>
+<blockquote>
+<p>Coming Soon! 2018-09-12</p>
+</blockquote>
+<p>NOTE 2018-09-12: The Facebook and Google login URLs will be added soon, in the next revision of this document. They will return a JWT token just as above, but will require the Oauth2 token instead of the username and password.</p>
+<p>NOTE: Facebook or Google accounts will supply the Oauth2 token instead of a password, which will be used to get the email address from Google or Facebook.</p>
+<h2 id="facebook-login"><a href="#facebook-login">Facebook Login</a></h2>
+<blockquote>
+<p>Coming Soon! 2018-09-12</p>
+</blockquote>
+<h2 id="guest-login"><a href="#guest-login">Guest Login</a></h2>
+<blockquote>
+<p>Coming Soon! 2018-09-12</p>
+</blockquote>
+<h2 id="user-registration"><a href="#user-registration">User Registration</a></h2>
+<p>For a user to register locally with Plai (without using their Google or Facebook login) they must supply a name, email, password, and (optionally) an avatar_url. Existing Plai users must supply the email and password to login.</p>
+<p>For local Plai users, a PNG avatar image will be generated for the user if they do not supply an avatar_url -- it will be a randomly-colored circle with the user's first two initials in it.</p>
+<p>The user's unique login key is their email address. Users cannot register with an email address that has already been used. A successful registration will return a Javascript Web Token (JWT), like this:</p>
+<pre><code>{
+    &quot;access_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTAuMC4zLjIzMlwvYXBpXC9hdXRoXC9yZWdpc3RlciIsImlhdCI6MTUzNjgwMzExNSwiZXhwIjoxNTM2ODA2NzE1LCJuYmYiOjE1MzY4MDMxMTUsImp0aSI6IjlMUzl5V2FBTEZESjVtS0YiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XTDE4HILV8lzaI4HnRWjQRk6DuKJWD4r4Y6xSwGaBFY&quot;,
+    &quot;token_type&quot;: &quot;bearer&quot;,
+    &quot;expires_in&quot;: 3600
+}</code></pre>
+<p>The REST status code will also indicate SUCCESS 200. Clients can use their REST libraries to check for a 200 result code.</p>
+<p>An unsuccessful registration will appear with an error message:</p>
+<pre><code>{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;The email has already been taken.&quot;
+        ]
+    }
+}</code></pre>
+<p>The REST status code will also indicate an error code (UNPROCESSABLE ENTITY 422 in the example above).</p>
+<h2 id="user-friendship"><a href="#user-friendship">User Friendship</a></h2>
+<p>User accounts can have a &quot;friend&quot; relationship. Users can send a friend request, which can then be accepted or rejected. Users can also unfriend, block, or unblock other users.</p>
+<p>If a user sets the privacy setting to &quot;Friends Only&quot; (for an Event or User Profile information), only their friends will be able to see it. Being friends with a another user also allows you to see a list of mutual friends, and friends of friends, which can be used to suggest new friendships to grow the social network. User profiles can also be searched within a given radius, so the client app can suggest new nearby friends with similar activity interests.</p>
+<p>There are several network endpoints dedicated to managing friend relationships. These all start with /api/users/friends/.</p>
+<h2 id="user-profiles"><a href="#user-profiles">User Profiles</a></h2>
+<p>Users have associated profiles, which store additional user information (such as address, activity types, etc.). Both profiles and events can be flagged as 'Just Me (Draft Edit)', 'Friends Only', or 'Everyone (General Public)'.</p>
+<p>A user can always see their own profile. They will be able to see other users' profiles if they are public, or if they are friends and it's posted as 'Friends Only'.</p>
+<p>Several of the network endpoints include user profiles in the results. For those endpoints, there will be a key named &quot;user_profile&quot;. It will either be null, meaning it is private or you are not a friend, or else it will be a nested JSON array of key/value pairs for that profile.</p>
+<p>Here is an example of a user with a hidden profile (user_profile: null, because we are not Dr. Mustafa's friend) followed by a user with a public profile (user_profile: sub-array of key/value pairs).</p>
+<pre><code>{
+    &quot;id&quot;: 42,
+    &quot;name&quot;: &quot;Dr. Mustafa Cummerata IV&quot;,
+    &quot;nickname&quot;: &quot;ebert.darron&quot;,
+    &quot;avatar_url&quot;: &quot;public/avatars/714c1d99-0bdd-417a-9018-0e22f137572f.png&quot;,
+    &quot;created_at&quot;: &quot;2018-09-13 01:45:04&quot;,
+    &quot;post_status_id&quot;: 2,
+    &quot;post_status_name&quot;: &quot;friends&quot;,
+    &quot;post_status_display_name&quot;: &quot;Friends Only&quot;,
+    &quot;organization_admin_count&quot;: 0,
+    &quot;organization_poster_count&quot;: 0,
+    &quot;organization_member_count&quot;: 0,
+    &quot;event_count&quot;: 0,
+    &quot;user_profile&quot;: null
+},
+{
+    &quot;id&quot;: 34,
+    &quot;name&quot;: &quot;Dr. Cruz Wilkinson&quot;,
+    &quot;nickname&quot;: &quot;colin28&quot;,
+    &quot;avatar_url&quot;: &quot;public/avatars/370cafd4-dde3-4d45-becc-ee719f3164b5.png&quot;,
+    &quot;created_at&quot;: &quot;2018-09-13 01:45:04&quot;,
+    &quot;post_status_id&quot;: 3,
+    &quot;post_status_name&quot;: &quot;public&quot;,
+    &quot;post_status_display_name&quot;: &quot;Everyone (General Public)&quot;,
+    &quot;organization_admin_count&quot;: 0,
+    &quot;organization_poster_count&quot;: 0,
+    &quot;organization_member_count&quot;: 0,
+    &quot;event_count&quot;: 0,
+    &quot;user_profile&quot;: {
+        &quot;id&quot;: 34,
+        &quot;user_id&quot;: 34,
+        &quot;description&quot;: &quot;I don&#39;t understand. Where did they live at the place of the trees behind him. &#39;--or next day, maybe,&#39; the Footman went on growing, and she could see this, as she wandered about for a dunce? Go on!&#39;.&quot;,
+        &quot;image_url&quot;: &quot;http://www.roberts.biz/&quot;,
+        &quot;video_url&quot;: null,
+        &quot;uses_calendar&quot;: 0,
+        &quot;twitter&quot;: &quot;http://www.lang.com/neque-inventore-repellat-et&quot;,
+        &quot;instagram&quot;: &quot;http://www.glover.com/rerum-ducimus-quas-provident-provident-eveniet-provident-non-est&quot;,
+        &quot;facebook&quot;: &quot;http://stroman.com/quia-est-quidem-ut-quisquam-excepturi-rerum-sunt&quot;,
+        &quot;gender_id&quot;: 3,
+        &quot;skill_level_id&quot;: 1,
+        &quot;age_group_id&quot;: 1,
+        &quot;location_id&quot;: 34,
+        &quot;created_at&quot;: &quot;2018-09-13 01:45:05&quot;,
+        &quot;cross_street&quot;: &quot;Morar Cape &amp; Gislason Pines&quot;,
+        &quot;address&quot;: &quot;52478 Hettinger Points&quot;,
+        &quot;address2&quot;: &quot;3&quot;,
+        &quot;city&quot;: &quot;East Berniece&quot;,
+        &quot;state&quot;: &quot;0&quot;,
+        &quot;country&quot;: &quot;Azerbaijan&quot;,
+        &quot;postal_code&quot;: &quot;78248&quot;,
+        &quot;cc&quot;: &quot;GF&quot;,
+        &quot;latitude&quot;: &quot;14.020966&quot;,
+        &quot;longitude&quot;: &quot;-12.324070&quot;,
+        &quot;gender_name&quot;: &quot;coed&quot;,
+        &quot;gender_display_name&quot;: &quot;Co-Ed&quot;,
+        &quot;skill_level_name&quot;: &quot;casual&quot;,
+        &quot;skill_level_display_name&quot;: &quot;Casual&quot;,
+        &quot;age_group_name&quot;: &quot;any&quot;,
+        &quot;age_group_display_name&quot;: &quot;Any&quot;,
+        &quot;distance_miles&quot;: 1284.8547500856578
+    }
+},</code></pre>
+<p>Note that the user's name, nickname, and avatar_url is not part of the profile; even users with a private profiles still have a public avatar that can be displayed when listing users in a client application.</p>
+<h2 id="latitude-and-longitude"><a href="#latitude-and-longitude">Latitude and Longitude</a></h2>
+<p>The event, user_profile, and organization structures includes two fields, latitude and longitude. These are used when calculating distances. The events, users, and organizations can be filtered to within a certain radius of a provided latitude and longitude. (Distance is measured in miles, and is calculated by the server using the Haversine formula.)</p>
+<p>The user_profile's latitude and longitude is meant as a default, or &quot;home&quot; location, of the currently logged in user. But the API allows any location (such as the user's current GPS location) to be used for distance filters or distance calculations.</p>
+<p>To calculate or filter distances according to an arbitrary value, pass the arguments <strong>near_lat</strong> (for latitude) and <strong>near_lon</strong> (for longitude). The server will dynamically calculate the distance to the event, user, or organization. It can also filter those distances to a certain radius, using the <strong>max_miles</strong> argument (more on that below). If no arguments are provided, the latitude and longitude of the user's profile will be used as a default value for the distance calculations.</p>
+<h2 id="events"><a href="#events">Events</a></h2>
+<p>Events can be posted with a permission of 'Just Me (Draft Edit)', 'Friends Only', or 'Everyone (General Public)'. This is set using the <strong>post_status_id</strong>. (The list of possible values for <strong>post_status_id</strong> can be obtained from the /api/context endpoint.)</p>
+<p>Here is an example event detail view, including the list of users going:</p>
+<pre><code>{
+    &quot;data&quot;: {
+        &quot;id&quot;: 50,
+        &quot;title&quot;: &quot;P90X3 Week 4&quot;,
+        &quot;description&quot;: &quot;Her listeners were perfectly quiet till she shook the house, and wondering whether she could not even get her head struck against the ceiling, and had to kneel down on the look-out for serpents.&quot;,
+        &quot;phone&quot;: &quot;686.337.0045&quot;,
+        &quot;event_email&quot;: &quot;reyes62@example.net&quot;,
+        &quot;url&quot;: &quot;http://www.ankunding.org/voluptate-aut-exercitationem-iure-deserunt-est-perferendis-ullam&quot;,
+        &quot;twitter&quot;: &quot;http://www.jacobi.com/&quot;,
+        &quot;instagram&quot;: &quot;http://www.anderson.com/&quot;,
+        &quot;facebook&quot;: &quot;http://crona.com/fuga-et-eos-ut-maxime-molestiae.html&quot;,
+        &quot;image_url&quot;: &quot;http://www.littel.biz/magnam-est-velit-dolor&quot;,
+        &quot;video_url&quot;: &quot;https://beier.info/beatae-quibusdam-velit-et-ipsam-qui-accusamus.html&quot;,
+        &quot;desired_user_going_count&quot;: 12,
+        &quot;start_datetime&quot;: &quot;2017-09-14 01:14:21&quot;,
+        &quot;end_datetime&quot;: &quot;2017-09-14 01:29:21&quot;,
+        &quot;post_status_id&quot;: 3,
+        &quot;organization_id&quot;: null,
+        &quot;organization_post_status_id&quot;: 4,
+        &quot;user_id&quot;: 14,
+        &quot;user_name&quot;: &quot;Dr. Yasmin Ward II&quot;,
+        &quot;gender_id&quot;: 1,
+        &quot;age_group_id&quot;: 4,
+        &quot;activity_type_id&quot;: 4,
+        &quot;skill_level_id&quot;: 2,
+        &quot;created_at&quot;: &quot;2018-09-13 01:45:07&quot;,
+        &quot;updated_at&quot;: &quot;2018-09-13 01:45:07&quot;,
+        &quot;cross_street&quot;: &quot;Pansy Views &amp; Streich Lights&quot;,
+        &quot;address&quot;: &quot;7924 Jolie Path Suite 831&quot;,
+        &quot;address2&quot;: &quot;6&quot;,
+        &quot;city&quot;: &quot;Benfurt&quot;,
+        &quot;state&quot;: &quot;1&quot;,
+        &quot;country&quot;: &quot;Maldives&quot;,
+        &quot;postal_code&quot;: &quot;75885-2552&quot;,
+        &quot;cc&quot;: &quot;IQ&quot;,
+        &quot;latitude&quot;: &quot;12.866464&quot;,
+        &quot;longitude&quot;: &quot;-116.166559&quot;,
+        &quot;user_going_count&quot;: 1,
+        &quot;user_alerting_count&quot;: 0,
+        &quot;gender_name&quot;: &quot;m&quot;,
+        &quot;gender_display_name&quot;: &quot;Male&quot;,
+        &quot;age_group_name&quot;: &quot;youth&quot;,
+        &quot;age_group_display_name&quot;: &quot;Youth&quot;,
+        &quot;activity_type_name&quot;: &quot;camping&quot;,
+        &quot;activity_type_display_name&quot;: &quot;Camping&quot;,
+        &quot;skill_level_name&quot;: &quot;intermediate&quot;,
+        &quot;skill_level_display_name&quot;: &quot;Intermediate&quot;,
+        &quot;post_status_name&quot;: &quot;public&quot;,
+        &quot;post_status_display_name&quot;: &quot;Everyone (General Public)&quot;,
+        &quot;organization_post_status_name&quot;: &quot;members&quot;,
+        &quot;organization_post_status_display_name&quot;: &quot;Members Only&quot;,
+        &quot;distance_miles&quot;: 7982.164310259635,
+        &quot;users_going&quot;: [
+            {
+                &quot;id&quot;: 51,
+                &quot;name&quot;: &quot;Derek Simkowiak&quot;,
+                &quot;nickname&quot;: null,
+                &quot;avatar_url&quot;: &quot;public/avatars/3f7770c2-8e7f-411f-9639-9ccf4f8a8c99.png&quot;,
+                &quot;created_at&quot;: &quot;2018-09-13 01:45:15&quot;,
+                &quot;post_status_id&quot;: 1,
+                &quot;post_status_name&quot;: &quot;unposted&quot;,
+                &quot;post_status_display_name&quot;: &quot;Just Me (Draft Edit)&quot;,
+                &quot;organization_admin_count&quot;: 0,
+                &quot;organization_poster_count&quot;: 0,
+                &quot;organization_member_count&quot;: 0,
+                &quot;event_count&quot;: 0,
+                &quot;pivot&quot;: {
+                    &quot;event_id&quot;: 50,
+                    &quot;user_id&quot;: 51
+                },
+                &quot;user_profile&quot;: {
+                    &quot;id&quot;: 51,
+                    &quot;user_id&quot;: 51,
+                    &quot;description&quot;: null,
+                    &quot;image_url&quot;: null,
+                    &quot;video_url&quot;: null,
+                    &quot;uses_calendar&quot;: null,
+                    &quot;twitter&quot;: null,
+                    &quot;instagram&quot;: null,
+                    &quot;facebook&quot;: null,
+                    &quot;gender_id&quot;: null,
+                    &quot;skill_level_id&quot;: null,
+                    &quot;age_group_id&quot;: null,
+                    &quot;location_id&quot;: 113,
+                    &quot;created_at&quot;: &quot;2018-09-13 01:45:15&quot;,
+                    &quot;cross_street&quot;: null,
+                    &quot;address&quot;: null,
+                    &quot;address2&quot;: null,
+                    &quot;city&quot;: null,
+                    &quot;state&quot;: null,
+                    &quot;country&quot;: null,
+                    &quot;postal_code&quot;: null,
+                    &quot;cc&quot;: null,
+                    &quot;latitude&quot;: null,
+                    &quot;longitude&quot;: null,
+                    &quot;gender_name&quot;: null,
+                    &quot;gender_display_name&quot;: null,
+                    &quot;skill_level_name&quot;: null,
+                    &quot;skill_level_display_name&quot;: null,
+                    &quot;age_group_name&quot;: null,
+                    &quot;age_group_display_name&quot;: null,
+                    &quot;distance_miles&quot;: null
+                }
+            }
+        ],
+        &quot;users_alerting&quot;: []
+    }
+}</code></pre>
+<h2 id="organizations"><a href="#organizations">Organizations</a></h2>
+<p>Organizations are a new feature of the platform server. They allow private (or public) groups, with members, posters, and administrators. This allows people to form teams, or trainer classes, with private events. It also allows organizations to have open or closed enrollment, with content available exclusively to members, or with public sponsored content.</p>
+<p>Any administrator can add or update organization events, allowing businesses to share management duties.</p>
+<p>There is no user interface for this in the current Plai mobile app. Also, there is no billing system configured yet, and there are no rules about setting up organizations. Currently, any user can create and administer an organization. This feature will evolve over time, but the API server currently supports multiple business models via the privacy settings and authorization rules.</p>
+<p>The organization endpoints all start with /api/organizations. For the initial release, the list of &quot;organizations&quot; in the database will be simply be shown under the &quot;Featured Locations&quot; tab.</p>
+<pre><code>{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Kiehn Inc&quot;,
+    &quot;description&quot;: &quot;whiteboard visionary functionalities&quot;,
+    &quot;phone&quot;: &quot;1-940-576-0727 x0812&quot;,
+    &quot;organization_email&quot;: &quot;jacobson.kenton@example.com&quot;,
+    &quot;url&quot;: &quot;http://www.prohaska.com/magni-et-vitae-minus-vitae-quibusdam.html&quot;,
+    &quot;twitter&quot;: &quot;http://bednar.com/at-id-ratione-aliquid-dolorem&quot;,
+    &quot;instagram&quot;: &quot;http://www.ebert.info/qui-assumenda-hic-fuga&quot;,
+    &quot;facebook&quot;: &quot;http://www.ortiz.com/voluptas-fugiat-omnis-quis-sit-dignissimos-illum-dolorem&quot;,
+    &quot;image_url&quot;: &quot;http://upton.com/&quot;,
+    &quot;video_url&quot;: &quot;https://www.dach.com/iste-quia-quisquam-cum-ab-animi-itaque&quot;,
+    &quot;user_id&quot;: 3,
+    &quot;created_at&quot;: &quot;2018-09-13 01:45:08&quot;,
+    &quot;updated_at&quot;: &quot;2018-09-13 01:45:08&quot;,
+    &quot;cross_street&quot;: &quot;Nestor Lane &amp; Hallie Lock&quot;,
+    &quot;address&quot;: &quot;936 Darrel Greens&quot;,
+    &quot;address2&quot;: &quot;0&quot;,
+    &quot;city&quot;: &quot;Port Isaacfurt&quot;,
+    &quot;state&quot;: &quot;1&quot;,
+    &quot;country&quot;: &quot;Mayotte&quot;,
+    &quot;postal_code&quot;: &quot;37198&quot;,
+    &quot;cc&quot;: &quot;MN&quot;,
+    &quot;latitude&quot;: &quot;-88.370430&quot;,
+    &quot;longitude&quot;: &quot;-125.723809&quot;,
+    &quot;organization_admin_count&quot;: 0,
+    &quot;organization_poster_count&quot;: 0,
+    &quot;organization_member_count&quot;: 0,
+    &quot;distance_miles&quot;: 6287.695971697031
+}</code></pre>
+<h3 id="organization-permissions"><a href="#organization-permissions">Organization Permissions</a></h3>
+<p>Every event has an <strong>organization_id</strong> field. In the future, other platform content, such as blog posts or advertisements, will also have an <strong>organization_id</strong> field.</p>
+<p>By default, organization_id is NULL. In this case, the default user permission rules will apply: the creator/owner can always see it, and the event permissions will be one of 'Just Me (Draft Edit)', 'Friends Only', or 'Everyone (General Public)'. These permissions are based on the field <strong>post_status_id</strong>.</p>
+<p>However, if organization_id is not NULL, then the event is associated with a particular organization. In this case, the user permission rules will be completely ignored, and instead the organization rules will apply.</p>
+<p>The organization rules for content have one of the following settings: 'Just Me (Draft Edit)', 'Administrators Only', 'Posting Members Only', 'Members Only', 'Everyone (General Public)'. For organization events, individual user friendships are ignored, and only organization membership is considered. These permissions are based on the field <strong>organization_post_status_id</strong>.</p>
+<p>Only users who have the 'Administrator' or 'Poster' role can post or edit organization events (or other future content, like blog posts).</p>
+<p>These roles and permissions are intended to provide flexible options for Plai revenue models. Businesses could choose to restrict the 'Administrator' role to a few users, such as the managers or trainers of a gym. Or a group could put everyone in the 'Poster' role, such as a soccer team where any team member is allowed to post, or a cycle club that is using Plai as a team communication forum.</p>
+<p>Users who are a 'Member' can read organization events, assuming it has the 'Members Only' permission, but they may not post events. This could be used by businesses (or individual trainers) to provide exclusive broadcast-only content.</p>
+<h3 id="organization-enrollment"><a href="#organization-enrollment">Organization Enrollment</a></h3>
+<p>Organizations set the default role of new users by setting the enrollment policy, with the field <strong>enrollment_policy_id</strong>. It will be one of the following:</p>
+<ul>
+<li>'Closed: Members can only be added by the owner, or another administrator'</li>
+<li>'Open Enrollment: Anyone can join and become a member'</li>
+<li>'Public Forum: Anyone can join and post content to members'</li>
+</ul>
+<p>The list of possible values for <strong>enrollment_policy_id</strong> can be obtained from the /api/context endpoint.</p>
+<h1 id="searching"><a href="#searching">Searching</a></h1>
+<p>The endpoints of /api/events, /api/users, and /api/organizations all allow searching of the database.</p>
+<p>There are three styles of search supported by the platform:</p>
+<h2 id="word-searches"><a href="#word-searches">Word searches</a></h2>
+<p>Word searches are a free-text search, like a google search of the platform database. The text fields will be searched for the words given. The name of the REST argument is &quot;q&quot;, for query.</p>
+<p>Each of the words are searched independently, so searching for &quot;soccer tennis&quot; returns events which contain either &quot;soccer&quot; or &quot;tennis&quot;, and you'll get a list of both types of events.</p>
+<p>This is designed to be used by users typing into a &quot;Search&quot; box. Only text fields are searched, not datetime or integer fields.</p>
+<h2 id="operator-searches"><a href="#operator-searches">Operator searches</a></h2>
+<p>Operator searches are filters which apply to specific fields of the data model. For example, to see all of the events created by the user with id 69, the query can set &quot;user_id=69&quot; in the REST request for /api/events.</p>
+<p>Unlike the word searches, where any word can match any field, the operator searches are combined together. All the rules filter rules match, not just one. This allows applications to apply a wide range of filter rules, for example, searching for an specific event type (on the <strong>activity_type_id</strong> field), within a certain date range (on the <strong>start_datetime</strong> field).</p>
+<p>There are two ways to specify an operator search. For the most simple case, where you just want to filter for a specific value, simply set that field name to the value, like user_id=69. In REST, that would look like GET https://server/api/events?user_id=69.</p>
+<p>However, operator searches allow for more than just a specific value. You can use greater than, less than, text searches, and more. You can use any of the following operators in your query:</p>
+<pre class="sourceCode php"><code class="sourceCode php">$operators = [
+    &#39;=&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&lt;=&#39;, &#39;&gt;=&#39;, &#39;&lt;&gt;&#39;, &#39;!=&#39;, &#39;&lt;=&gt;&#39;,
+    &#39;like&#39;, &#39;like binary&#39;, &#39;not like&#39;, &#39;ilike&#39;,
+    &#39;&amp;&#39;, &#39;|&#39;, &#39;^&#39;, &#39;&lt;&lt;&#39;, &#39;&gt;&gt;&#39;,
+    &#39;rlike&#39;, &#39;regexp&#39;, &#39;not regexp&#39;,
+    &#39;~&#39;, &#39;~*&#39;, &#39;!~&#39;, &#39;!~*&#39;, &#39;similar to&#39;,
+    &#39;not similar to&#39;, &#39;not ilike&#39;, &#39;~~*&#39;, &#39;!~~*&#39;,
+];</code></pre>
+<p>This is why they are called &quot;operator&quot; searches: because you can use many kinds of operators, not just the equals operator. And you can combine them to search within ranges, or within subsets of results.</p>
+<p>For the non-simple case (not just an &quot;equals&quot; value), or to apply multiple filters applied to a given field, the REST argument name is slightly different. Instead of just using the field name as the key, like this:</p>
+<pre><code>key=...
+user_id=...
+start_datetime=...
+
+#
+# For example:
+#
+key=value 
+user_id=69
+start_datetime=2018-09-13 12:00:00</code></pre>
+<p>One must instead use the key name with brackets <code>[]</code> appended:</p>
+<pre><code>key[]=...
+user_id[]=...
+start_datetime[]=...</code></pre>
+<p>This tells the server that we are sending an array of values, not just a single value, for this field name.</p>
+<p>Next, the values that you send must be grouped as ordered pairs of &quot;operator, value&quot; for this particular field name. You can specify as many operators as you like. For example:</p>
+<pre><code>#
+# Add the first filter condition:
+#
+
+# Less than operator:
+start_datetime[]=&lt;
+
+# Less than this value:
+start_datetime[]=2018-09-14 12:00:00
+
+#
+# Add a second filter condition:
+#
+
+# Greater than operator:
+start_datetime[]=&gt;
+
+# Greater than this value:
+start_datetime[]=2018-09-12 12:00:00
+
+#
+# Add a third filter, this time on a different field
+#
+
+# Equals operator (the 2nd &#39;=&#39;)
+user_id[]==
+
+# Equals this value:
+user_id[]=69</code></pre>
+<p>In a GET query string, this would look like:</p>
+<p>''' https://server/api/events?start_datetime[]=&lt;&amp;start_datetime[]=2018-09-14%2012:00:00&amp;start_datetime[]=&gt;&amp;start_datetime[]=2018-09-12%2012:00:00&amp;user_id[]=%60&amp;user_id[]=69 '''</p>
+<p>Note that the order of the arguments is important, as the (operator, value) pairs are parsed in order.</p>
+<p>Combinations of filters can be used by client applications to create custom views. For example, they can display a specific calendar month of events, or all events of a certain type, or all future events from a particular organization, by filtering fields such as <strong>start_datetime</strong>, <strong>organization_id</strong>, and <strong>activity_type_id</strong>.</p>
+<h2 id="searching-dates-and-times"><a href="#searching-dates-and-times">Searching dates and times</a></h2>
+<p>Doing a database search for datetimes can be tricky. If you simply try to search for the date &quot;2018-09-12&quot;, then the server will interpret that to mean the datetime of &quot;2018-09-12 00:00:00&quot;. It would only match items that have the time portion set to &quot;00:00:00&quot;. Similarly, you can't just search for &quot;2018-09&quot; to get all events in September.</p>
+<p>Therefor, the API has some helpers for searching on dates or datetimes. These helpers tell the server to use special SQL database syntax, so that you can more easily search for dates.</p>
+<p>The date helpers are 'day', 'month', 'year', 'time', and 'date'. To use the helper, just append it on to the end of your operator. For example, to find all events in 2018, use '=year' instead of '='. To search for events after a specific date, use '&gt;date' instead of '&gt;'.</p>
+<pre><code># Equals (year) operator:
+start_datetime[]==year
+
+# Equals this (year) value:
+start_datetime[]=2018
+
+# Greater than (date) operator:
+start_datetime[]=&gt;date
+
+# Greater than this (date) value:
+start_datetime[]=2018-09-13</code></pre>
+<h2 id="short-field-names-auto-complete"><a href="#short-field-names-auto-complete">Short field names (auto-complete)</a></h2>
+<p>Short field names are a convenience for developers. It's a server feature that allows for less typing, and shorter URLs.</p>
+<p>When using operator searches, you might find that your REST request urls get very long and hard to read. For example, to search within a certain lat/lon box defined by four lat/lon corners, your REST GET request might look like this:</p>
+<pre><code>GET /api/events?latitude[]=&gt;&amp;latitude[]=69.0&amp;latitude[]=&lt;&amp;latitude[]=70.0&amp;longitude[]=&gt;&amp;longitude[]=69.0&amp;longitude[]=&lt;&amp;longitude[]=70.0</code></pre>
+<p>Because of this, the server allows the use of auto-completed field names. So long as the name is an unambiguous prefix that matches exactly one field, you can use an abbreviated name. Instead of &quot;start_datetime&quot;, you can just use &quot;start&quot;, or even &quot;sta&quot;, but not &quot;s&quot; because that would be ambigious with &quot;skill_level&quot;. (Any ambiguous field names, like 's' or 'l', are ignored.)</p>
+<p>In the above example, instead of latitude/longitude, you can use lat/lon:</p>
+<pre><code>GET /api/events?lat[]=&gt;&amp;lat[]=69.0&amp;lat[]=&lt;&amp;lat[]=70.0&amp;lon[]=&gt;&amp;lon[]=69.0&amp;lon[]=&lt;&amp;lon[]=70.0</code></pre>
+<h1 id="built-in-search-filters-today_only-future_only-max_miles"><a href="#built-in-search-filters-today_only-future_only-max_miles">Built-in search filters: today_only, future_only, max_miles</a></h1>
+<p>Finally, in addition to the search paramers, some network endpoints have convenient pre-built filters.</p>
+<h2 id="get-apievents-has-today_only1-and-future_only1"><a href="#get-apievents-has-today_only1-and-future_only1">GET /api/events has today_only=1 and future_only=1</a></h2>
+<pre><code>GET /api/events?max_miles=1000 </code></pre>
+<p>On events you can optionally set today_only=1 to get only events for today, both past and present, or future_only=1 to get only future events. This prevents the client app from needing to get today's date and construct a query for <strong>start_datetime</strong> manually.</p>
+<p>FIXME both?</p>
+<h2 id="max_miles-with-optional-near_lat-near_lon"><a href="#max_miles-with-optional-near_lat-near_lon">max_miles (with optional near_lat, near_lon)</a></h2>
+<p>Events, users, and organizations can also allow filtering by distance, using the <strong>max_miles</strong> option. For example, a REST request to</p>
+<pre><code>GET /api/events?max_miles=1000 </code></pre>
+<p>would only show events within 1000 miles.</p>
+<p>By default, the distance is calculated from the logged in user's profile latitude and longitude, which is considered their &quot;home&quot; value. But any latitude/longitude pair can be used for the distance location by passing the <strong>near_lat</strong> (for latitude) and <strong>near_lon</strong> (for longitude) arguments, and the server will dynamically calculate and filter the distance.</p>
+<h1 id="paged-chunked-results"><a href="#paged-chunked-results">Paged / Chunked results</a></h1>
+<p>In the response that is returned from the server, the actual data will be returned under a JSON key name of &quot;data&quot;. In addition to the actual &quot;data&quot; that we want, there will be two more keys that are dedicated to paging server results. These are called &quot;links&quot; and &quot;meta&quot;:</p>
+<pre><code>{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 8,
+            ...snip...
+            &quot;distance_miles&quot;: 3034.491448586222
+        }
+    ],
+
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;https://40.78.81.126/api/events?page=1&quot;,
+        &quot;last&quot;: &quot;https://40.78.81.126/api/events?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;path&quot;: &quot;https://40.78.81.126/api/events&quot;,
+        &quot;per_page&quot;: 100,
+        &quot;to&quot;: 9,
+        &quot;total&quot;: 9
+    }
+}</code></pre>
+<p>These are used to page server results and chunk the data, instead of downloading huge query results in a single request. This is a part of the JSON API standard. It is documented here:</p>
+<blockquote>
+<p>http://jsonapi.org/format/#fetching-pagination</p>
+</blockquote>
+<p>Because this is a known standard, the REST/JSON library on your platform may offer functions or callbacks to automate data paging. (This can be used to create &quot;infinitely scrolling&quot; lists in a user interface, where visually scrolling to the bottom of the list automatically triggers the loading of the next page of data. This provides a peppy and efficient user interface experience.)</p>
+<h1 id="the-apicontext-endpoint"><a href="#the-apicontext-endpoint">The /api/context Endpoint</a></h1>
+<p>There is one special endpoint that all clients will want to get when the user first logs in: /api/context .</p>
+<p>It provides all the types, categories, roles, and permissions defined by the database. For each of these, there is an integer id, which should be used as the key when saving data on the server. For example, set activity_type_id=1 for a &quot;Basketball&quot; event, or activity_type_id=2 for a &quot;Bike&quot; event.</p>
+<p>For each entry, there is also a &quot;name&quot;. This is an all-lowercase, code-friendly variable name to be used for code logic. This is necessary so that source code doesn't have to refer to magic integer id numbers (like 1, 2, etc.) that might change in the future.</p>
+<p>Finally, there is a &quot;display_name&quot;, which is a human-friendly label. This may contain spaces, punctuation, etc.</p>
+<p>Any user interface forms that create or edit data should use these server-based arrays as the select options, rather than hard-coding any list of possible select options. This will ensure that all id values are consistent across all platforms. It also allow us to add or remove values without releasing a new version of the client applications.</p>
+<p>It is recommended that the client applications retrieve this once per login. For iPhone Swift, it could be stored in CoreData. For Android, it could be stored as part of the Activity Context, or a similar global singleton where your store application-wide data. For Vue this would be stored in Vuex.</p>
+<pre><code>{
+    &quot;data&quot;: {
+        &quot;activity_types&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;basketball&quot;,
+                &quot;display_name&quot;: &quot;Basketball&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;bike&quot;,
+                &quot;display_name&quot;: &quot;Bike&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;bowl&quot;,
+                &quot;display_name&quot;: &quot;Bowl&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;camping&quot;,
+                &quot;display_name&quot;: &quot;Camping&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;crossfit&quot;,
+                &quot;display_name&quot;: &quot;Crossfit&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;dance&quot;,
+                &quot;display_name&quot;: &quot;Dance&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;disc&quot;,
+                &quot;display_name&quot;: &quot;Disc&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;dog_walk&quot;,
+                &quot;display_name&quot;: &quot;Dog Walk&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;football&quot;,
+                &quot;display_name&quot;: &quot;Football&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;golf&quot;,
+                &quot;display_name&quot;: &quot;Golf&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;kickball&quot;,
+                &quot;display_name&quot;: &quot;Kickball&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;pilates&quot;,
+                &quot;display_name&quot;: &quot;Pilates&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 13,
+                &quot;name&quot;: &quot;pingpong&quot;,
+                &quot;display_name&quot;: &quot;Pingpong&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 14,
+                &quot;name&quot;: &quot;run&quot;,
+                &quot;display_name&quot;: &quot;Run&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 15,
+                &quot;name&quot;: &quot;skate&quot;,
+                &quot;display_name&quot;: &quot;Skate&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 16,
+                &quot;name&quot;: &quot;snow&quot;,
+                &quot;display_name&quot;: &quot;Snow&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 17,
+                &quot;name&quot;: &quot;soccer&quot;,
+                &quot;display_name&quot;: &quot;Soccer&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 18,
+                &quot;name&quot;: &quot;softball&quot;,
+                &quot;display_name&quot;: &quot;Softball&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 19,
+                &quot;name&quot;: &quot;surf&quot;,
+                &quot;display_name&quot;: &quot;Surf&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 20,
+                &quot;name&quot;: &quot;swim&quot;,
+                &quot;display_name&quot;: &quot;Swim&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 21,
+                &quot;name&quot;: &quot;tennis&quot;,
+                &quot;display_name&quot;: &quot;Tennis&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 22,
+                &quot;name&quot;: &quot;volleyball&quot;,
+                &quot;display_name&quot;: &quot;Volleyball&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 23,
+                &quot;name&quot;: &quot;yoga&quot;,
+                &quot;display_name&quot;: &quot;Yoga&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 24,
+                &quot;name&quot;: &quot;other&quot;,
+                &quot;display_name&quot;: &quot;Other&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ],
+        &quot;age_groups&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;any&quot;,
+                &quot;display_name&quot;: &quot;Any&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;adult&quot;,
+                &quot;display_name&quot;: &quot;Adult&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;senior&quot;,
+                &quot;display_name&quot;: &quot;Senior&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;youth&quot;,
+                &quot;display_name&quot;: &quot;Youth&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ],
+        &quot;genders&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;m&quot;,
+                &quot;display_name&quot;: &quot;Male&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;f&quot;,
+                &quot;display_name&quot;: &quot;Female&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;coed&quot;,
+                &quot;display_name&quot;: &quot;Co-Ed&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;none&quot;,
+                &quot;display_name&quot;: &quot;Unspecified&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ],
+        &quot;skill_levels&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;casual&quot;,
+                &quot;display_name&quot;: &quot;Casual&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;intermediate&quot;,
+                &quot;display_name&quot;: &quot;Intermediate&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;advanced&quot;,
+                &quot;display_name&quot;: &quot;Advanced&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ],
+        &quot;post_statuses&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;unposted&quot;,
+                &quot;display_name&quot;: &quot;Just Me (Draft Edit)&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;friends&quot;,
+                &quot;display_name&quot;: &quot;Friends Only&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;public&quot;,
+                &quot;display_name&quot;: &quot;Everyone (General Public)&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ],
+        &quot;organization_post_statuses&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;unposted&quot;,
+                &quot;display_name&quot;: &quot;Unposted (Draft Edit)&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;admins&quot;,
+                &quot;display_name&quot;: &quot;Administrators Only&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;posters&quot;,
+                &quot;display_name&quot;: &quot;Posting Members Only&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;members&quot;,
+                &quot;display_name&quot;: &quot;Members Only&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;public&quot;,
+                &quot;display_name&quot;: &quot;Everyone (General Public)&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ],
+        &quot;enrollment_policies&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;closed&quot;,
+                &quot;display_name&quot;: &quot;Closed: Members can only be added by the owner, or another administrator&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;open_for_members&quot;,
+                &quot;display_name&quot;: &quot;Open Enrollment: Anyone can join and become a member&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;open_for_posters&quot;,
+                &quot;display_name&quot;: &quot;Public Forum: Anyone can join and post content to members&quot;,
+                &quot;created_at&quot;: null,
+                &quot;updated_at&quot;: null,
+                &quot;deleted_at&quot;: null
+            }
+        ]
+    }
+}</code></pre>
+<h1 id="plai-api-reference"><a href="#plai-api-reference">Plai API Reference</a></h1>
+<hr />
+<h1 id="application-context"><a href="#application-context">Application Context</a></h1>
+<hr />
+<h2 id="get-context-lists-of-types-roles-policies-permission-levels-etc."><a href="#get-context-lists-of-types-roles-policies-permission-levels-etc.">Get Context (Lists of Types, Roles, Policies, Permission Levels, etc.)</a></h2>
+<pre><code>GET /api/context</code></pre>
+<h3 id="description"><a href="#description">Description</a></h3>
+<p>This gets the list of activity_types, age_groups, genders, skill_levels, post_statuses, organization_post_statuses, and enrollment_policies. These values say what list of &quot;select&quot; or &quot;multiple select&quot; options to provide in input forms.</p>
+<p>The id values here should be used for the input values of <code>activity_type_id</code>, <code>age_group_id</code>, <code>gender_id</code>, <code>skill_level_id</code>, <code>post_status_id</code>, <code>organization_post_status_id</code>, and <code>enrollment_policy_id</code> when creating or updating content.</p>
+<p>See above for a recent example of the available values. (Ignore the created_at, updated_at, and deleted_at fields for this data.)</p>
+<hr />
+<h1 id="authentication"><a href="#authentication">Authentication</a></h1>
+<hr />
+<h2 id="register-as-new-local-user"><a href="#register-as-new-local-user">Register as New Local User</a></h2>
+<pre><code>POST /api/auth/register</code></pre>
+<h3 id="parameters"><a href="#parameters">Parameters</a></h3>
+<ul>
+<li><strong>name</strong>: The Plai username.</li>
+<li><strong>email</strong>: The user's email address. This email address must not already exist in the database.</li>
+<li><strong>password</strong>: The user's login password, which can be used at /api/auth/login</li>
+</ul>
+<h4 id="optional-parameters"><a href="#optional-parameters">Optional Parameters</a></h4>
+<ul>
+<li><strong>nickname</strong>: An optional screen name.</li>
+<li><strong>avatar_url</strong>: An optional URL to an avatar image. If this is not provided, an avatar image will be generated for the user on the Plai server.</li>
+<li><strong>avatar_file</strong>: An optional file upload to use as the user's avatar.</li>
+</ul>
+<h3 id="description-1"><a href="#description-1">Description</a></h3>
+<p>The provided email address must not already exist -- email is the unique key used for identifying logins.</p>
+<hr />
+<h2 id="login-as-a-local-user"><a href="#login-as-a-local-user">Login as a Local User</a></h2>
+<pre><code>POST /api/auth/login</code></pre>
+<h3 id="parameters-1"><a href="#parameters-1">Parameters</a></h3>
+<ul>
+<li><strong>email</strong>: The user's email address, to identify them</li>
+<li><strong>password</strong>: The user's login password. This can be changed using <code>PUT /api/users/{user}</code></li>
+</ul>
+<h3 id="description-2"><a href="#description-2">Description</a></h3>
+<p>The provided email address must not already exist.</p>
+<hr />
+<h2 id="logout-invalidate-the-current-auth-token"><a href="#logout-invalidate-the-current-auth-token">Logout (invalidate the current Auth token)</a></h2>
+<pre><code>POST /api/auth/logout</code></pre>
+<hr />
+<h2 id="refresh-auth-token"><a href="#refresh-auth-token">Refresh Auth Token</a></h2>
+<pre><code>POST /api/auth/refresh</code></pre>
+<h3 id="description-3"><a href="#description-3">Description</a></h3>
+<p>This will invalidate the current auth token and return a new one, with a new expiration time.</p>
+<p>Clients should POST to this url before the current token expires, in order to keep a login session alive.</p>
+<hr />
+<hr />
+<h1 id="events-1"><a href="#events-1">Events</a></h1>
+<hr />
+<h2 id="list-or-search-events"><a href="#list-or-search-events">List or Search Events</a></h2>
+<pre><code>GET /api/events</code></pre>
+<h3 id="parameters-2"><a href="#parameters-2">Parameters</a></h3>
+<ul>
+<li><strong>future_only=1</strong> to hide past events.</li>
+<li><strong>today_only=1</strong> to limit events to those occurring today.</li>
+<li><strong>max_miles=NUMBER</strong> to limit the events to those within max_miles. The location will use the requestor's profile latitude and longitude, unless <strong>near_lat</strong> and <strong>near_lon</strong> are also supplied in the request to override the default.</li>
+</ul>
+<h3 id="supported-fields-for-operator-searches"><a href="#supported-fields-for-operator-searches">Supported Fields for Operator Searches</a></h3>
+<p>Any of the following field names can be used with operator searches.</p>
+<pre><code>$columns_to_search = [ &#39;title&#39;, &#39;description&#39;, &#39;url&#39;, &#39;phone&#39;, &#39;event_email&#39;, 
+    &#39;twitter&#39;, &#39;instagram&#39;, &#39;facebook&#39;, &#39;image_url&#39;, &#39;video_url&#39;, &#39;organization_id&#39;, 
+    &#39;start_datetime&#39;, &#39;end_datetime&#39;, &#39;post_status_id&#39;, &#39;organization_post_status_id&#39;, 
+    &#39;user_id&#39;, &#39;gender_id&#39;, &#39;age_group_id&#39;, &#39;activity_type_id&#39;, &#39;skill_level_id&#39;, 
+    &#39;cross_street&#39;, &#39;address&#39;, &#39;address2&#39;, &#39;city&#39;, &#39;state&#39;, &#39;country&#39;, &#39;postal_code&#39;, 
+    &#39;cc&#39;, &#39;latitude&#39;, &#39;longitude&#39; &#39;name&#39; ];</code></pre>
+<h3 id="description-4"><a href="#description-4">Description</a></h3>
+<p>Event list, from oldest to newest.</p>
+<hr />
+<h2 id="create-event"><a href="#create-event">Create Event</a></h2>
+<pre><code>POST /api/events</code></pre>
+<h3 id="parameters-3"><a href="#parameters-3">Parameters</a></h3>
+<ul>
+<li><strong>image_file</strong>: An optional file upload for the image. The field <code>image_url</code> will be point to to the copy of the file on the server.</li>
+</ul>
+<p>All the (non-computed, writable) fields in an Event record can be supplied.</p>
+<p>The following fields are required:</p>
+<pre><code>&#39;post_status_id&#39;,
+&#39;user_id&#39;,
+&#39;location_id&#39;,
+&#39;gender_id&#39;,
+&#39;age_group_id&#39;,
+&#39;activity_type_id&#39;,
+&#39;skill_level_id&#39;,</code></pre>
+<h3 id="description-5"><a href="#description-5">Description</a></h3>
+<p>Create an Event with the given values. The saved event object will be returned. Any user can create an event, but admin or poster permission is required if an <strong>organization_id</strong> is also supplied.</p>
+<hr />
+<h2 id="event-detail"><a href="#event-detail">Event Detail</a></h2>
+<pre><code>GET /api/events/{event}</code></pre>
+<h3 id="description-6"><a href="#description-6">Description</a></h3>
+<p>Get a specific event entry. Unlike the event list, this also includes the fields</p>
+<pre><code>    &quot;users_going&quot;: [],
+    &quot;users_alerting&quot;: []</code></pre>
+<p>Which is the list of users attending (or being alerted) on this event, including their profiles (if their profile permissions allow).</p>
+<hr />
+<h2 id="update-event"><a href="#update-event">Update Event</a></h2>
+<pre><code>PUT /api/events/{event}
+PATCH /api/events/{event}</code></pre>
+<h3 id="parameters-4"><a href="#parameters-4">Parameters</a></h3>
+<ul>
+<li><strong>image_file</strong>: An optional file upload for the image. The field <code>image_url</code> will be point to to the copy of the file on the server.</li>
+</ul>
+<p>All the (non-computed, writable) fields in an Event record can be supplied.</p>
+<hr />
+<h2 id="delete-event"><a href="#delete-event">Delete Event</a></h2>
+<pre><code>DELETE /api/events/{event}</code></pre>
+<hr />
+<h2 id="event-user-going"><a href="#event-user-going">Event: User Going</a></h2>
+<pre><code>POST /api/events/{event}/going</code></pre>
+<h3 id="description-7"><a href="#description-7">Description</a></h3>
+<p>Mark the authenticated user as going to the provided event. The event detail will be returned, which should now include the current user in the <code>users_going</code> array.</p>
+<hr />
+<h2 id="event-user-not-going"><a href="#event-user-not-going">Event: User Not Going</a></h2>
+<pre><code>POST /api/events/{event}/notgoing</code></pre>
+<h3 id="description-8"><a href="#description-8">Description</a></h3>
+<p>Mark the authenticated user as NOT going to the provided event. The event detail will be returned, which should not include the current user in the <code>users_going</code> array.</p>
+<hr />
+<h2 id="event-user-alerting"><a href="#event-user-alerting">Event: User Alerting</a></h2>
+<pre><code>POST /api/events/{event}/alerting</code></pre>
+<h3 id="description-9"><a href="#description-9">Description</a></h3>
+<p>Mark the authenticated user as wanting alerts on the provided event. The event detail will be returned, which should now include the current user in the <code>users_alerting</code> array.</p>
+<hr />
+<h2 id="event-user-not-alerting"><a href="#event-user-not-alerting">Event: User Not Alerting</a></h2>
+<pre><code>POST /api/events/{event}/notalerting</code></pre>
+<h3 id="description-10"><a href="#description-10">Description</a></h3>
+<p>Mark the authenticated user as NOT wanting alerts on the provided event. The event detail will be returned, which should not include the current user in the <code>users_alerting</code> array.</p>
+<hr />
+<h1 id="users-1"><a href="#users-1">Users</a></h1>
+<hr />
+<blockquote>
+<p>NOTE: Users are not created like other items, with <code>POST users/</code>. Instead user creation is handled by <code>/api/auth/register</code>, below.</p>
+</blockquote>
+<blockquote>
+<p>NOTE: Similary, there is no <code>DELETE users</code>. That must be handled seperately by the admin panel, as it is not a feature supported by the API.</p>
+</blockquote>
+<hr />
+<h2 id="list-or-search-users"><a href="#list-or-search-users">List or Search Users</a></h2>
+<pre><code>GET /api/users</code></pre>
+<h3 id="parameters-5"><a href="#parameters-5">Parameters</a></h3>
+<ul>
+<li><strong>max_miles=NUMBER</strong> to limit the organizations to those within max_miles. The location will use the requestor's profile latitude and longitude, unless <strong>near_lat</strong> and <strong>near_lon</strong> are also supplied in the request to override the default.</li>
+</ul>
+<h3 id="supported-fields-for-operator-searches-1"><a href="#supported-fields-for-operator-searches-1">Supported Fields for Operator Searches</a></h3>
+<p>Any of the following field names can be used with operator searches.</p>
+<pre><code>$columns_to_search = [ &#39;name&#39;, &#39;user_id&#39;, &#39;gender_id&#39;, 
+                        &#39;skill_level_id&#39;, &#39;age_group_id&#39; ];</code></pre>
+<h3 id="description-11"><a href="#description-11">Description</a></h3>
+<p>User list, from newest to oldest (by created_by).</p>
+<hr />
+<h2 id="user-detail"><a href="#user-detail">User Detail</a></h2>
+<pre><code>GET /api/users/{user}</code></pre>
+<h3 id="description-12"><a href="#description-12">Description</a></h3>
+<p>Get a specific user entry. Unlike the user list, this also includes the fields</p>
+<pre><code>&quot;organizations_where_admin&quot;: [],
+&quot;organizations_where_poster&quot;: [
+    {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Kiehn Inc&quot;,
+        &quot;description&quot;: &quot;whiteboard visionary functionalities&quot;,
+        &quot;url&quot;: &quot;http://www.prohaska.com/magni-et-vitae-minus-vitae-quibusdam.html&quot;,
+        &quot;phone&quot;: &quot;1-940-576-0727 x0812&quot;,
+        &quot;organization_email&quot;: &quot;jacobson.kenton@example.com&quot;,
+        &quot;twitter&quot;: &quot;http://bednar.com/at-id-ratione-aliquid-dolorem&quot;,
+        &quot;instagram&quot;: &quot;http://www.ebert.info/qui-assumenda-hic-fuga&quot;,
+        &quot;facebook&quot;: &quot;http://www.ortiz.com/voluptas-fugiat-omnis-quis-sit-dignissimos-illum-dolorem&quot;,
+        &quot;image_url&quot;: &quot;http://upton.com/&quot;,
+        &quot;video_url&quot;: &quot;https://www.dach.com/iste-quia-quisquam-cum-ab-animi-itaque&quot;,
+        &quot;user_id&quot;: 3,
+        &quot;location_id&quot;: 101,
+        &quot;enrollment_policy_id&quot;: 3,
+        &quot;created_at&quot;: &quot;2018-09-13 01:45:08&quot;,
+        &quot;updated_at&quot;: &quot;2018-09-13 01:45:08&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;pivot&quot;: {
+            &quot;user_id&quot;: 51,
+            &quot;organization_id&quot;: 1
+        }
+    }
+],
+&quot;organizations_where_member&quot;: []</code></pre>
+<p>In this example there is one entry in the <code>organizations_where_poster</code> list, but <code>organizations_where_admin</code> and <code>organizations_where_member</code> are empty.</p>
+<hr />
+<h2 id="user-get-me"><a href="#user-get-me">User: Get Me</a></h2>
+<pre><code>GET /api/users/me</code></pre>
+<h3 id="description-13"><a href="#description-13">Description</a></h3>
+<p>Get the User Detail record of the currently authenticated user. This is useful if don't know your own user.id but need it for a query, or want to display the user's profile.</p>
+<hr />
+<h2 id="user-get-me-1"><a href="#user-get-me-1">User: Get Me</a></h2>
+<pre><code>GET /api/users/me</code></pre>
+<h3 id="description-14"><a href="#description-14">Description</a></h3>
+<p>Get the User Detail record of the currently authenticated user. This is useful if need to know your own user.id a query, or want to display the user's profile.</p>
+<hr />
+<h2 id="update-user"><a href="#update-user">Update User</a></h2>
+<pre><code>PUT /api/users/{user}
+PATCH /api/users/{user}</code></pre>
+<h3 id="parameters-6"><a href="#parameters-6">Parameters</a></h3>
+<ul>
+<li><strong>image_file</strong>: An optional file upload for the image. The field <code>image_url</code> will be point to to the copy of the file on the server.</li>
+<li><strong>avatar_file</strong>: An optional file upload to use as the user's avatar.</li>
+</ul>
+<p>All the (non-computed, writable) fields in an Organization record can be supplied.</p>
+<h3 id="description-15"><a href="#description-15">Description</a></h3>
+<p>Get the User Detail record of the currently authenticated user. This is useful if don't know your own user.id but need it for a query, or want to display the user's profile.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Users: Friends</td>
+</tr>
+</tbody>
+</table>
+<h2 id="users-friends-send-a-friend-request-invite"><a href="#users-friends-send-a-friend-request-invite">Users: Friends: Send a friend request (invite)</a></h2>
+<pre><code>POST /api/users/friends/requests/{recipient}</code></pre>
+<h3 id="description-16"><a href="#description-16">Description</a></h3>
+<p>Invite another user to be a friend.</p>
+<p>The {recipient} argument is a user.id integer key. (The sender is the authenticated user.) The result will be the currently pending friend request entry, which includes the <code>sender_id</code> (the authenticated user) and the <code>recipient_id</code>:</p>
+<pre><code>{
+    &quot;data&quot;: {
+        &quot;recipient_id&quot;: 1,
+        &quot;recipient_type&quot;: &quot;App\\User&quot;,
+        &quot;status&quot;: 0,
+        &quot;sender_type&quot;: &quot;App\\User&quot;,
+        &quot;sender_id&quot;: 52,
+        &quot;updated_at&quot;: &quot;2018-09-14 04:57:34&quot;,
+        &quot;created_at&quot;: &quot;2018-09-14 04:57:34&quot;,
+        &quot;id&quot;: 1
+    }
+}</code></pre>
+<p>If you try to friend someone more than once, you'll receive an error:</p>
+<pre><code>{
+    &quot;error&quot;: &quot;Failed (perhaps it&#39;s a duplicate request?)&quot;
+}</code></pre>
+<hr />
+<h2 id="users-friends-list-pending-friend-requests"><a href="#users-friends-list-pending-friend-requests">Users: Friends: List pending friend requests</a></h2>
+<pre><code>GET /api/users/friends/requests/pending</code></pre>
+<h3 id="description-17"><a href="#description-17">Description</a></h3>
+<p>Get the list of unanswered invites for the authenticated user.</p>
+<hr />
+<h2 id="users-friends-accept-a-friend-request"><a href="#users-friends-accept-a-friend-request">Users: Friends: Accept a friend request</a></h2>
+<pre><code>POST /api/users/friends/requests/accept/{sender}</code></pre>
+<hr />
+<h2 id="users-friends-deny-a-friend-request"><a href="#users-friends-deny-a-friend-request">Users: Friends: Deny a friend request</a></h2>
+<pre><code>POST /api/users/friends/requests/deny/{sender}</code></pre>
+<hr />
+<h2 id="users-friends-list-denied-friend-requests"><a href="#users-friends-list-denied-friend-requests">Users: Friends: List denied friend requests</a></h2>
+<pre><code>GET /api/users/friends/requests/denied</code></pre>
+<hr />
+<h2 id="users-friends-block-a-user"><a href="#users-friends-block-a-user">Users: Friends: Block a user</a></h2>
+<pre><code>POST /api/users/friends/block/{friend}</code></pre>
+<hr />
+<h2 id="users-friends-list-blocked-friend-requests"><a href="#users-friends-list-blocked-friend-requests">Users: Friends: List blocked friend requests</a></h2>
+<pre><code>GET /api/users/friends/blocked</code></pre>
+<hr />
+<h2 id="users-friends-unblock-a-user"><a href="#users-friends-unblock-a-user">Users: Friends: Unblock a user</a></h2>
+<pre><code>POST /api/users/friends/unblock/{friend}</code></pre>
+<hr />
+<h2 id="users-friends-list-friends"><a href="#users-friends-list-friends">Users: Friends: List friends</a></h2>
+<pre><code>GET /api/users/friends</code></pre>
+<hr />
+<h2 id="users-friends-list-friends-of-friends"><a href="#users-friends-list-friends-of-friends">Users: Friends: List friends of friends</a></h2>
+<pre><code>GET /api/users/friends_of_friends</code></pre>
+<hr />
+<h2 id="users-friends-list-mutual-friends-with-another-user"><a href="#users-friends-list-mutual-friends-with-another-user">Users: Friends: List mutual friends with another user</a></h2>
+<pre><code>GET /api/users/mutual_friends/{other}</code></pre>
+<hr />
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"># Organizations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list-or-search-organizations"><a href="#list-or-search-organizations">List or Search Organizations</a></h2>
+<pre><code>GET /api/organizations</code></pre>
+<h3 id="parameters-7"><a href="#parameters-7">Parameters</a></h3>
+<ul>
+<li><strong>max_miles=NUMBER</strong> to limit the organizations to those within max_miles. The location will use the requestor's profile latitude and longitude, unless <strong>near_lat</strong> and <strong>near_lon</strong> are also supplied in the request to override the default.</li>
+</ul>
+<h3 id="supported-fields-for-operator-searches-2"><a href="#supported-fields-for-operator-searches-2">Supported Fields for Operator Searches</a></h3>
+<p>Any of the following field names can be used with operator searches.</p>
+<pre><code>$columns_to_search = [&#39;name&#39;, &#39;description&#39;, &#39;url&#39;, &#39;phone&#39;, &#39;organization_email&#39;, 
+    &#39;twitter&#39;, &#39;instagram&#39;, &#39;facebook&#39;, &#39;image_url&#39;, &#39;video_url&#39;, &#39;user_id&#39;, 
+    &#39;enrollment_policy_id&#39;, &#39;cross_street&#39;, &#39;address&#39;, &#39;address2&#39;, &#39;city&#39;, &#39;state&#39;, 
+    &#39;country&#39;, &#39;postal_code&#39;, &#39;cc&#39;, &#39;latitude&#39;, &#39;longitude&#39; ];</code></pre>
+<h3 id="description-18"><a href="#description-18">Description</a></h3>
+<p>Organization list, from closest to furthest (by lat/lon).</p>
+<hr />
+<h2 id="create-organization"><a href="#create-organization">Create Organization</a></h2>
+<pre><code>POST /api/organizations</code></pre>
+<h3 id="parameters-8"><a href="#parameters-8">Parameters</a></h3>
+<ul>
+<li><strong>image_file</strong>: An optional file upload for the image. The field <code>image_url</code> will be point to to the copy of the file on the server.</li>
+</ul>
+<p>All the (non-computed, writable) fields in an Organization record can be supplied.</p>
+<h3 id="description-19"><a href="#description-19">Description</a></h3>
+<p>Create an Organization with the given values. The saved organization object will be returned. As of 2018-09-13, any user can create an organization.</p>
+<hr />
+<h2 id="organization-detail"><a href="#organization-detail">Organization Detail</a></h2>
+<pre><code>GET /api/organizations/{organization}</code></pre>
+<h3 id="description-20"><a href="#description-20">Description</a></h3>
+<p>Get a specific organization entry. Unlike the organization list, this also includes the fields</p>
+<pre><code>    &quot;members&quot;: [],
+    &quot;posters&quot;: [],
+    &quot;admins&quot;: [],
+    &quot;events&quot;: []</code></pre>
+<p>Which is the list of users in their roles (with profiles), and also events associated with this organization.</p>
+<hr />
+<h2 id="update-organization"><a href="#update-organization">Update Organization</a></h2>
+<pre><code>PUT /api/organizations/{organization}
+PATCH /api/organizations/{organization}</code></pre>
+<h3 id="parameters-9"><a href="#parameters-9">Parameters</a></h3>
+<ul>
+<li><strong>image_file</strong>: An optional file upload for the image. The field <code>image_url</code> will be point to to the copy of the file on the server.</li>
+</ul>
+<p>All the (non-computed, writable) fields in an Organization record can be supplied.</p>
+<h3 id="description-21"><a href="#description-21">Description</a></h3>
+<p>Only the creator-owner can delete an organization. Administrators cannot delete it.</p>
+<hr />
+<h2 id="delete-organization"><a href="#delete-organization">Delete Organization</a></h2>
+<pre><code>DELETE /api/organizations/{organization}</code></pre>
+<h3 id="description-22"><a href="#description-22">Description</a></h3>
+<p>Only the creator-owner can delete an organization. Administrators cannot delete it.</p>
+<hr />
+<h2 id="organization-join"><a href="#organization-join">Organization: Join</a></h2>
+<pre><code>POST /api/organizations/{organization}/join/{user}</code></pre>
+<h3 id="description-23"><a href="#description-23">Description</a></h3>
+<p>Have the provided user join the organization with the role specified by the enrollment_policy_name. It assumes open enrollment.</p>
+<p>The user id must be specified in the URL. A user can join themselves (and must provide their own user.id in the URL), or an organization administrator can join another user to their organization.</p>
+<hr />
+<h2 id="organization-leave"><a href="#organization-leave">Organization: Leave</a></h2>
+<pre><code>POST /api/organizations/{organization}/leave/{user}</code></pre>
+<h3 id="description-24"><a href="#description-24">Description</a></h3>
+<p>Have the provided user leave the organization, regardless of what role they have.</p>
+<p>The user id must be specified in the URL. A user can leave themselves (and must provide their own user.id in the URL), or an organization administrator can remove another user from their organization.</p>
+<hr />
+<h2 id="organization-members-posters-and-administrators"><a href="#organization-members-posters-and-administrators">Organization: Members, Posters, and Administrators</a></h2>
+<pre><code># Members:
+GET /api/organizations/{organization}/members
+POST /api/organizations/{organization}/members/{user}
+DELETE /api/organizations/{organization}/members/{user}
+
+# Posters:
+GET /api/organizations/{organization}/posters
+POST /api/organizations/{organization}/posters/{user}
+DELETE /api/organizations/{organization}/posters/{user}
+
+# Administrators:
+GET /api/organizations/{organization}/admins
+POST /api/organizations/{organization}/admins/{user}
+DELETE /api/organizations/{organization}/admins/{user}</code></pre>
+<h3 id="description-25"><a href="#description-25">Description</a></h3>
+<p>An organization administrator (or its creator-owner) can assign other users to particular roles in the organization using <code>POST</code> to these endpoints.</p>
+<p>When doing a GET for the roles, only a user summary is provided. Full user profiles are not included. For that, use <code>GET /api/organizations/{organization}</code>.</p>
+<p>The DELETE methods here assume the user has the specified role. To remove a user from an organization regardless of their role, use <code>POST /api/organizations/{organization}/leave/{user}</code>.</p>
+<hr />
+</body>
+</html>

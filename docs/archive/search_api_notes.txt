@@ -1,0 +1,230 @@
+
+
+
+
+
+
+
+
+
+$str = "first=value&arr[]=foo+bar&arr[]=baz";
+
+// Recommended
+parse_str($str, $output);
+echo $output['first'];  // value
+echo $output['arr'][0]; // foo bar
+echo $output['arr'][1]; // baz
+
+
+
+	generic operators
+		There is also like etc.
+		<
+		>
+
+use directly allowed strings, in a scrubbed list
+
+
+property_name,
+
+string
+date
+
+
+
+
+?q=somestring
+	search all the text fields with like, separated as individual words and anded.
+
+	It will return results. User search box, looks at string fields only, not specific dates or int management.
+
+?
+?property_name=searchterdaym (int or anything)
+property_name_op,  [ '>', '<', '<>', '=', 'like', 'is_null', 'is_not_null', 'day', 'month', 'year', 'time' ]
+property_name_op,  [ '>', '<', '<>', '=', 'like', 'is_null', 'is_not_null', 'day', 'month', 'year', 'time', 'date' ]
+
+start_datetime_op=<
+start_datetime=<
+
+
+is_null, is_not_null take no args.
+
+'>', '<', '<>', '=', 'like'
+1 arg.
+	Can be just the value.
+
+
+'is_null', 'is_not_null',
+0 args
+	Just 
+
+dates and nulls
+
+'day', 'month', 'year', 'time', 'date'
+day,month,year,time
+	How to have multiple specific filters on the same field, maybe 4 diffn't ones
+	Would also be true for between function, which is just shorthand for two >= <= values and could be dropped
+
+start_datetime_op=time
+start_datetime=12:30:00
+start_datetime_op=year
+start_datetime=1984
+
+
+property_name=value
+
+
+Function inputs: querybuilder object, array of( operator, value )
+	Internally will parse datetime_modifier if any, use correct sampler function.
+
+	if 
+
+
+property_name[]
+	op: '=', '!=', '>','<','>=', '<=', '<>', 'like'            (works with ints and strings)
+
+	op: '> year', '< year', '<> year', '= year'    (works with ints and strings and datetypes)
+	op: '> day', '< day', '<> day', '= day'
+
+	op: '>year', '<year', '<>year', '=year'    (works with ints and strings and datetypes)
+	op: '>day', '<day', '<>day', '=day'
+
+	op: 'year>', 'year<', 'year<>', 'year='    (works with ints and strings and datetypes)
+	op: 'day>', 'day<', 'day<>', 'day='
+
+	op: '>', '<', '<>', '=', 'like'            (works with ints and strings)
+  value: year2011-08-02
+
+
+property_name[]=like
+property_name[]=racoons
+property_name[]=!=
+property_name[]=2011-08-02
+
+
+if is_array,
+	parse args
+else
+	create single arg array of
+	'=',
+	'value'
+	then continue passing on
+
+
+Date options:
+
+Append to field name: _day _time  no, prefer field=..value or values...
+Prefix or Append to op name: >date, time<
+Have a new arg, 'date', '<', 
+	Prefer simple op value pairs.
+
+'day', 'month', 'year', 'time', 'date'
+	arg1: 
+	arg2
+
+
+property_name[]
+	op
+	arg1
+	arg2
+
+	op
+
+	op
+	arg1
+
+
+
+
+value
+
+For each property offered by the api, need:
+	property_name=search
+	property_name_op  defaults to = if not specified, otherwise must be in list
+
+		if string: ['>', '<', '<>', '>=', '<=', '=',  'is_null', 'is_not_null', 'like']
+		if datetime: ['>', '<', '<>', '>=', '<=', '=',  'is_null', 'is_not_null', 'day', 'month', 'year', 'time' ]
+		if int: ['>', '<', '<>', '>=', '<=', '=',  'is_null', 'is_not_null' ]
+
+		if string: ['>', '<', '<>', '>=', '<=', '=', 'between',  'is_null', 'is_not_null', 'like']
+		if datetime: ['>', '<', '<>', '>=', '<=', '=', 'between', 'is_null', 'is_not_null', 'date', 'day', 'month', 'year', 'time' ]
+		if int: ['>', '<', '<>', '>=', '<=', '=',  'is_null', 'is_not_null' ]
+
+		treat ops generically, if exception is okay (don't do that), else fruitless query is okay too. It only applies to filter stuff that would otherwise be visible.
+
+		is_null, is_not_null 
+		between requires two args, how to pass two args?
+				_between1
+				_between2
+
+	 will be used on location lat and lon, datetimes
+
+	 is_null... would only be valuable with an and clause.
+
+	 anded? so all must be true? yes
+	 	conditions per field/property_name: anded.
+	 		order_by: Should be decided by the server, not the client app. Consistency. 
+
+	What about a single field and?
+		start_datetime < this and > that
+			provided by between; only field specific searches in the api.
+
+
+	Offer is_null, is_not_null, is_between, is_not_between, like,
+	
+	Treat as data type:
+
+	date, day, month, year, time   queries a datetime field
+
+	Use as suffix?
+	_date=mydatestring
+	_year=
+	_month=
+	_day=
+	_date=
+
+
+provides basic where, not exists.
+if passed in 'NULL', use where NULL
+
+	between/no_between requires two arguments. How to format in the querystring?
+
+
+		_between1=
+		_between2=
+
+		_not_between1
+		_not_between2
+
+
+
+
+plus named filters
+	... in the url; name establishes a relationship, like an ORM property
+
+
+Pre-canned, forced: filters: /user/mycrazystuff/
+
+Within those pre-canned, forced filters, additional search can be done
+	by field, operator, value
+		and text searches in text fields
+			is this LIKE %string%?
+
+	where, whereNot, whereNotNull, etc. is too rich to be a generic interface?
+		joins would be not allowed; table names are supposed to be black box.
+		So there needs to be a later to map request key names to specific table or ORM model field names.
+			This same layer would decide
+				- which fields are searchable
+				- which fields are searchable as strings
+				- as dates,
+				- etc.
+				- 
+
+		Transform a flat key/value request into table.field
+			What operations are possible on a given field?
+			
+			Similar to an apiResource, but in reverse, 
+			Every field gets:
+				mapping to ORM property, or relationship to that property
+				
+				

@@ -1,0 +1,48 @@
+# Table design for add campaigns.
+
+Supports ad filters for event and user profile data. Would want to design queries
+for ad campaigns in a certain region, with filters.
+
+This would also presumably linked to some kind of billing.
+
+Ads could be shown on a per-user basis, or embedded within listings, or 
+reserved for the featured page.
+
+
+'''
+ad_campaigns
+    id
+    name
+    description
+    start_datetime
+    end_datetime
+    range_in_miles
+    user_id
+    organization_id
+    location_id
+
+hasMany activity_types
+    activity_type_ad_campaign
+        activity_type_id
+        ad_campaign_id
+
+hasMany genders
+    ad_campaign_gender
+        ad_campaign_id
+        gender_id
+
+hasMany age_groups
+    ad_campaign_age_group
+        ad_campaign_id
+        age_group_id
+
+hasMany skill_levels
+    ad_campaign_skill_level
+        ad_campaign_id
+        skill_level_id
+
+hasMany adverts
+    advert_ad_campaign
+        advert_id
+        ad_campaign_id
+'''

@@ -1,0 +1,172 @@
+
+----------------------
+
+post organizations/{organization}/join/{user}
+post organizations/{organization}/leave/{user}
+
+    Self or admin can do it.
+
+    based on enrollment rules:
+
+    closed (manual enrollment by admin only. creator makes the first admins.)
+        Must a user accept the invite to the organization:
+            (Not at this time - maybe later.)
+    open (anyone can become a member)
+    open_posting (anyone can become a poster)
+
+    Rather than requesting member or poster, just have /join/ function that makes user member or poster based on enrollment_policy
+
+    Leave the organization, regardless of which role the user has. Even admins.
+
+
+get organizations/{organization}/members/
+    public info, for anyone
+post organizations/{organization}/members/{user_id}
+    must be admin: Add a user as a member in particular. Users can't call this.
+
+delete organizations/{organization}/members/{user_id}
+    must be admin
+
+
+get organizations/{organization}/admins/
+    public info
+post organizations/{organization}/admins/{user_id}
+    must be admin
+delete organizations/{organization}/admins/{user_id}
+    must be admin
+
+
+get organizations/{organization}/ad_campaigns/
+    public
+
+post organizations/{organization}/ad_campaigns/
+    must be admin
+
+delete organizations/{organization}/ad_campaigns/
+    must be admin
+
+
+get organizations/{organization}/ad_campaigns/
+    public
+
+post organizations/{organization}/ad_campaigns/
+    must be admin
+
+delete organizations/{organization}/ad_campaigns/
+    must be admin
+
+
+get organizations/{organization}/ads/
+    public
+
+post organizations/{organization}/ads/
+    must be admin
+
+delete organizations/{organization}/ads/
+    must be admin
+
+
+TODO: File upload for images.
+
+
+
+--------------------------------------------
+
+
+post organizations/{organization}/join/
+post organizations/{organization}/leave/
+
+    The user can automatically become a member or a poster, or get rejected.
+
+    What if they are a member, and want to be a poster.
+    What if they are a poster, and want to be a member.
+        Organization admin must do it.
+
+    How does an admin change another user's status or remove them? Through relation URLs below
+
+
+    What is the visibility of membership? Same as profile: public if made public.
+    Is group membership public information?
+        It is on LinkedIn, right? If the profile is public or friends and is_friend, then yes.
+
+
+get organizations/{organization}/members/
+post organizations/{organization}/members/{user_id}
+delete organizations/{organization}/members/{user_id}
+
+    What if the requestor is an admin -- can see all members -- but the member has a private profile.  DONE: use noprofile()
+    TODO: Make the OrganizationResource.php use the readable()->whereIn() SKIPPED used noprofile()
+
+        The admin should get to see their user list, even if private        DONE with noprofile()
+            What fields are always exposed? user_id, 
+
+            id, name. Name is always visible, or is it part of the profile perms?
+                Name is always visible. Even if your profile is hidden, you can create public events. There needs to at least be a name with the ID.
+           Add query for basic id/name.  DONE as noprofile()
+           Use that for members, etc.  DONE
+
+
+    based on enrollment rules:
+
+    closed (manual enrollment by admin only. creator makes the first admins.)
+        Must a user accept the invite to the organization:
+            (Not at this time - maybe later.)
+    open (anyone can become a member)
+    open_posting (anyone can become a poster)
+
+
+    Rather than requesting member or poster, just have /join/ function that makes user member or poster based on enrollment_policy
+
+
+post organizations/{organization}/admins/
+    Only an admin can make another admin
+    who gets to be a poster?
+
+post organizations/{organization}/adverts/
+
+
+
+
+--------------------------
+
+
+
+FIXME: Need to fix users to use an avatar and name for all queries
+    User existence is public: it needs to be, so friends can see which other friends are coming to the friend event.
+    
+    Profile is extra data, not use to relationships. Current release has the profile as visible to Just Me.
+
+
+        Don't want to use the Voyager thing; suxors maxor
+        Just need a avatar URL. Look for laravel package.
+            https://github.com/laravolt/avatar   Generates local one.
+
+
+File storage naming conventions
+    Any URLs published are just randomly-named files, no file organization. Guaranteed to get an original file name.
+    Put everythin under :
+        user_files/
+
+
+
+Go with User HasOne Profile, have the profiles be loaded separately and independently for each one, with a possible null result.
+    with() in user listing.
+
+
+TODOs:
+
+x. Install Avatar package.  DONE
+
+
+x. Create avatar image with random file name on user registration (based on user's name).  DONE
+
+
+x. Add avatar to user table as per example wiki, add filename option for user update  DONE
+
+
+x. Add user profile update fields on user fields.   DONE
+
+
+x. Update UserController and UserResource to treate the user profile separately.  DONE
+
+
